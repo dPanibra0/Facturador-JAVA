@@ -6,10 +6,11 @@
             <div class="formLogincontent columnCenter" id="formLogin">
                 <!-- <form> -->
                 <form (ngSubmit)="onSubmit()" class="formLogin columnCenter">
+                    <!-- Input Email -->
                     <mat-form-field appearance="outline" class="w-full">
                         <mat-label>Email</mat-label>
                         <input matInput [formControl]="emailFormControl">
-                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-icon matSuffix class="iconForm">email</mat-icon>
                         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                             Please enter a valid email address
                         </mat-error>
@@ -17,12 +18,13 @@
                             Email is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
+                    <!-- Input Password -->
                     <mat-form-field appearance="outline" class="w-full">
                         <mat-label>Password</mat-label>
                         <input matInput [formControl]="passwordFormControl" [type]="hide ? 'password' : 'text'">
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            <mat-icon class="iconForm">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                         <mat-error *ngIf="passwordFormControl.hasError('minlength')">
                             Password is <strong>invalid</strong>
@@ -31,12 +33,12 @@
                             Password is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
-
+                    <!-- Option -->
                     <div class="optionsLogin w-full">
                         <mat-checkbox color='primary'><span class="rememberM">Remember me</span></mat-checkbox>
                         <a href="" class="forgotP">Forgot Password?</a>
                     </div>
-
+                    <!-- Submit Button -->
                     <button type="submit" mat-raised-button [disabled]="disableSubmit" class="signin">
                         <div class="centerC">
                             <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
@@ -49,14 +51,10 @@
 
                 <div class="new">Are you new? <span>Sign Up</span></div>
             </div>
-            <div class="powered">
-                <h4>Powered by
-                    <a href="http://bytexbyte.com.pe/" target="_blank" class="bxb">Byte x Byte</a>
-                </h4>
-            </div>
+            <app-powered-bxb> </app-powered-bxb>
         </div>
     </div>
     <div class="contentLine">
-        <div class="line" id="line"></div>
+        <div class="line mat-elevation-z2" id="line"></div>
     </div>
 </div>

@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
     formLogin.addEventListener('animationend',()=>{
       line.classList.add('lineAnimation');
       line.addEventListener('animationend',()=>{
-        contentLogin.classList.add('endLoginAnimation');
-        setTimeout(() => {
+        // contentLogin.classList.add('endLoginAnimation');
+        // setTimeout(() => {
           
-          this.router.navigate(['home'])
-        }, 2000);
+        //   this.router.navigate(['home'])
+        // }, 2000);
         
       });
     });
