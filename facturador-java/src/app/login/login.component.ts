@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   constructor(private router: Router) {}
-  
+
   hide = true;
   loading = false;
   valid = false;
@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     Validators.required,
     Validators.minLength(5),
   ]);
-
   onSubmit() {
     if (this.emailFormControl.valid && this.passwordFormControl.valid) {
       this.disableSubmit = true;
@@ -36,25 +35,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  loginAnimation(){
+  loginAnimation() {
     let formLogin = document.getElementById('formLogin');
-    let line = document.getElementById('line');
-    let contentLogin = document.getElementById('contentLogin');
 
     formLogin.classList.add('animationLogin');
-    formLogin.addEventListener('animationend',()=>{
-      line.classList.add('lineAnimation');
-      line.addEventListener('animationend',()=>{
-        // contentLogin.classList.add('endLoginAnimation');
-        // setTimeout(() => {
-          
-        //   this.router.navigate(['home'])
-        // }, 2000);
-        
-      });
-    });
-    }
 
+    formLogin.addEventListener('animationend', () => {
+      this.router.navigate(['']);
+    });
+  }
 
   ngOnInit(): void {}
 }

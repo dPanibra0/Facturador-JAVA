@@ -1,0 +1,21 @@
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>Perfil</span>
+  </button>
+  <button mat-menu-item >
+    <mat-icon matBadge="5" matBadgeColor="warn">notification_important</mat-icon>
+    <span>Notificaciones</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>reply</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="appMenu" class="userContainer">
+  <div class="column centerW">
+    <img src="./../../../../assets/images/pepe.jpg" class="userImg" alt="Imagen Usuario">
+    <span>Usuario 1</span>
+  </div>
+</button>
