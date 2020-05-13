@@ -3,13 +3,13 @@
         <div class="login columnCenter ">
             <img src="./../../../assets/images/bxbLogo.png" alt="" class="imgRounded">
             <h1 class="title">Tiendita Don Pepe</h1>
-            <div class="formLogincontent columnCenter" id="formLogin">
+            <div class="formLogincontent columnCenter"  #formLogin>
                 <!-- <form> -->
-                <form (ngSubmit)="onSubmit()" class="formLogin columnCenter">
+                <form (ngSubmit)="onSubmit()" class="formLogin columnCenter" >
                     <!-- Input Email -->
                     <mat-form-field appearance="outline" class="w-full">
                         <mat-label>Email</mat-label>
-                        <input matInput [formControl]="emailFormControl">
+                        <input matInput [formControl]="emailFormControl" >
                         <mat-icon matSuffix class="iconForm">email</mat-icon>
                         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                             Please enter a valid email address
@@ -21,7 +21,7 @@
                     <!-- Input Password -->
                     <mat-form-field appearance="outline" class="w-full">
                         <mat-label>Password</mat-label>
-                        <input matInput [formControl]="passwordFormControl" [type]="hide ? 'password' : 'text'">
+                        <input matInput [formControl]="passwordFormControl"  [type]="hide ? 'password' : 'text'">
                         <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon class="iconForm">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

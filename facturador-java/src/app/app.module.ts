@@ -8,8 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { PoweredBxBComponent } from './powered-bxb/powered-bxb.component';
 import { LoadScreenComponent } from './load-screen/load-screen.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { MaterialModule} from './material.module';
+import { BaseURLInterceptor } from './core/interceptors/baseURL.inteceptor';
+import { HttpErrorInterceptor } from './core/interceptors/HttpError.interceptor';
+import { TokenHeaderInterceptor} from './core/interceptors/tokenHeader.interceptor';
+
+import { MaterialModule } from './material.module';
+
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -22,9 +29,14 @@ import { MaterialModule} from './material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: BaseURLInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenHeaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

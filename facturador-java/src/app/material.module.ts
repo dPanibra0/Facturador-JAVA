@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatRadioModule,
     MatMenuModule,
     MatBadgeModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatIconModule,
@@ -37,6 +39,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatRadioModule,
     MatMenuModule,
     MatBadgeModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}

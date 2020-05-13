@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main.component';
-import { HomeComponent} from './home/home.component';
+import { HomeComponent } from './home/home.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { ComprasComponent } from './compras/compras.component';
 import { InventarioComponent } from './inventario/inventario.component';
@@ -12,6 +12,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { AdminGuard } from '../core/guards/admin.guard';
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +25,7 @@ const routes: Routes = [
       { path: 'distribuidores', component: DistribuidoresComponent },
       { path: 'clientes', component: ClientesComponent },
       { path: 'usuarios', component: UsuariosComponent },
-      { path: 'reportes', component: ReportesComponent },
+      { path: 'reportes', component: ReportesComponent,canActivate:[AdminGuard] },
       { path: 'configuraciones', component: ConfiguracionesComponent },
       { path: 'busqueda', component: BusquedaComponent },
     ],
