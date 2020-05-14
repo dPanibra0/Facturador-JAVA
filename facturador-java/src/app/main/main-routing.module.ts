@@ -7,7 +7,11 @@ import { VentasComponent } from './ventas/ventas.component';
 import { ComprasComponent } from './compras/compras.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { DistribuidoresComponent } from './distribuidores/distribuidores.component';
-import { ClientesComponent } from './clientes/clientes.component';
+
+import { ListClienteComponent} from './clientes/list-cliente/list-cliente.component';
+import { AddClienteComponent} from './clientes/add-cliente/add-cliente.component';
+import { EditClienteComponent} from './clientes/edit-cliente/edit-cliente.component';
+
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
@@ -23,7 +27,9 @@ const routes: Routes = [
       { path: 'compras', component: ComprasComponent },
       { path: 'inventario', component: InventarioComponent },
       { path: 'distribuidores', component: DistribuidoresComponent },
-      { path: 'clientes', component: ClientesComponent },
+      { path: 'clientes', component: ListClienteComponent },
+      { path: 'clientes/add', component: AddClienteComponent },
+      { path: 'clientes/editcliente', component: EditClienteComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'reportes', component: ReportesComponent,canActivate:[AdminGuard] },
       { path: 'configuraciones', component: ConfiguracionesComponent },

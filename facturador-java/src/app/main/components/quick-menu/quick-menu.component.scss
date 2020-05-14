@@ -1,16 +1,22 @@
-.acceso{
-    transform: translateX(120px) ;
-    animation: init3 1.5s forwards;
-    animation-delay: 1s;
+.acceso {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 100vh;
+  overflow: hidden;
+  transform: translateX(120px);
+  animation: init3 1.5s forwards;
+  animation-delay: 1s;
 }
 @keyframes init3 {
-    0% {
-      transform: translateX(120px);
-    }
-    100% {
-      transform: translateX(0px);
-    }
+  0% {
+    transform: translateX(120px);
   }
+  100% {
+    transform: translateX(0px);
+  }
+}
 .fast {
   width: 60px;
   height: 60px;
@@ -27,7 +33,7 @@
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
     0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
-.activeQM{
+.activeQM {
   color: white;
   background-color: gray;
 }

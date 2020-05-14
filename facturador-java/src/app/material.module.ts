@@ -11,6 +11,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -26,6 +30,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     MatBadgeModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatSelectModule,
   ],
   exports: [
     MatIconModule,
@@ -40,6 +48,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     MatBadgeModule,
     MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}

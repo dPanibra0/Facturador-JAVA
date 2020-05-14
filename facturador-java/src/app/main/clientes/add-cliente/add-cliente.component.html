@@ -1,0 +1,64 @@
+<div class="cContainer mat-elevation-z2 mt1">
+  <div class="ccTitle">
+    <span>Agregar Cliente</span>
+    <button mat-icon-button routerLink="../">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <hr class="cLine">
+  <div class="registerCliente row">
+
+    <div class="imgCliente">asdasd</div>
+    <div class="formRegisterCliente">
+<h1>Nuevo Cliente</h1>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Documento</mat-label>
+        <mat-select [(value)]="nCliente.$tipodoc">
+          <mat-option value="option2">RUC</mat-option>
+          <mat-option value="option3">DNI</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Clearable input</mat-label>
+        <input matInput type="text" [(ngModel)]="value">
+        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" [(ngModel)]="nCliente.$nombre">
+        <button mat-button *ngIf="nCliente.$nombre" matSuffix mat-icon-button aria-label="Clear"
+          (click)="nCliente.$nombre=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field><br>
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Direccion</mat-label>
+        <input matInput type="text" [(ngModel)]="direccion">
+        <button mat-button *ngIf="direccion" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Telefono</mat-label>
+        <input matInput type="text" [(ngModel)]="telefono">
+        <button mat-button *ngIf="telefono" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Correo</mat-label>
+        <input matInput type="text" [(ngModel)]="correo">
+        <button mat-button *ngIf="correo" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <button (click)="enviar()"> gaaaaaaaaaaa</button>
+    </div>
+
+  </div>
+</div>

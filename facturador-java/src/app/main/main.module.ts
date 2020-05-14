@@ -10,7 +10,6 @@ import { VentasComponent } from './ventas/ventas.component';
 import { ComprasComponent } from './compras/compras.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { DistribuidoresComponent } from './distribuidores/distribuidores.component';
-import { ClientesComponent } from './clientes/clientes.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
@@ -19,6 +18,10 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './components/user/user.component';
 
 import { MaterialModule } from './../material.module';
+
+import { AddClienteComponent } from './clientes/add-cliente/add-cliente.component';
+import { EditClienteComponent } from './clientes/edit-cliente/edit-cliente.component';
+import { ListClienteComponent } from './clientes/list-cliente/list-cliente.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +33,15 @@ import { MaterialModule } from './../material.module';
     ComprasComponent,
     InventarioComponent,
     DistribuidoresComponent,
-    ClientesComponent,
     UsuariosComponent,
     ReportesComponent,
     ConfiguracionesComponent,
     BusquedaComponent,
     HomeComponent,
     UserComponent,
+    AddClienteComponent,
+    EditClienteComponent,
+    ListClienteComponent,
   ],
   imports: [CommonModule, MainRoutingModule, MaterialModule],
 })
