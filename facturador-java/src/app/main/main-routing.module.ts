@@ -29,7 +29,7 @@ const routes: Routes = [
       { path: 'distribuidores', component: DistribuidoresComponent },
       { path: 'clientes', component: ListClienteComponent },
       { path: 'clientes/add', component: AddClienteComponent },
-      { path: 'clientes/editcliente', component: EditClienteComponent },
+      { path: 'clientes/:id', component: EditClienteComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'reportes', component: ReportesComponent,canActivate:[AdminGuard] },
       { path: 'configuraciones', component: ConfiguracionesComponent },

@@ -48,46 +48,40 @@ body {
 .cContainer{
   // background-color: rgb(236, 236, 164);
   position: relative;
-  height: 94vh;
-  margin: 2vh 120px;
-  width: 78vw;
-  padding: 1rem 1rem 0;
+  height: 92vh;
+  margin: 1rem;
+  width: 79vw;
+  padding: 1rem;
   border-radius: 5px;
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  row-gap: 1rem;
   background-color: white;
 }
 .ccTitle{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 30px;
+  font-size: 40px;
   color: #454545;
+  height: 100%;
+  // margin-bottom: 1rem;
+  // padding: 0 1rem;
+  // background-color: rgba(75, 185, 75, 0.397);
+}
+.searchData{
+  // height: 50px;
+//   width: 500px;
+margin-top: 16px;
+font-size: 11px;
+margin-right: 2rem;
 }
 .ccTitleBtn{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 8px;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-  border: 2px solid rgb(75, 185, 75);
-  color: rgb(75, 185, 75);
-  background-color: white;
-
-  font-weight: 600;
-  height: 34px;
-}
-.ccTitleBtn:hover{
-  background-color:rgb(75, 185, 75) ;
+  // width: 120px;
+  background-color: rgb(75, 185, 75);
   color: white;
+  height: 40px;
 }
 .ccTitleBtn mat-icon{
-  font-size: 18px;
-  margin-top: 6px;
-}
-.cLine{
-  height: .5px;
-  border-radius: 16px;
-  background-color: rgb(153, 153, 153);
-  border: 1px solid rgba(0, 0, 0, 0);
+  margin-right: 7px;
 }

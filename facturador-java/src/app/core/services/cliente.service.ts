@@ -10,6 +10,10 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   registrarCliente(nuevoCliente:Cliente): Observable<any>{
-    return this.http.post<any>('/oauth/token', nuevoCliente);
+    return this.http.post<any>('/clientes', nuevoCliente);
+  }
+  getClientes(): Observable<any>{
+    return this.http.get<any>('/clientes');
+
   }
 }

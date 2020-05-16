@@ -1,1 +1,110 @@
-<p>edit-cliente works!</p>
+<div class="cContainer mat-elevation-z2 mt1">
+    <div class="ccTitle ">
+        <span>Detalle Cliente</span>
+        <button mat-icon-button routerLink="../">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+    </div>
+
+    <div class="registerCliente row">
+        <div class="imgCliente"></div>
+        <mat-progress-bar mode="indeterminate" *ngIf="!cliente"></mat-progress-bar>
+        <div class="formRegisterCliente" *ngIf="cliente">
+            <h1>Nuevo Cliente</h1>
+            <!-- <form> -->
+
+            <mat-form-field class="inputFw">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" [formControl]="nombreFormControl" [(ngModel)]="nCliente.$nombre" required>
+                <button mat-button *ngIf="nCliente.$nombre" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nCliente.$nombre=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="nombreFormControl.hasError('required')">
+                    Nombre is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+
+            <div class="inputFw selectorFw">
+                <mat-form-field>
+                    <mat-label>Tipo de Documento</mat-label>
+                    <mat-select [(value)]="nCliente.$tipodoc" [formControl]="tipodocFormControl">
+                        <mat-option value="RUC">RUC</mat-option>
+                        <mat-option value="DNI">DNI</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-form-field">
+                    <mat-label>Nro. de Documento</mat-label>
+                    <input matInput disabled='disableBtn' oninput="this.value=this.value.slice(0,this.maxLength)"
+                        type="number" maxlength="11" minlength="8" [formControl]="documentoFormControl"
+                        [(ngModel)]="nCliente.$nrodoc" required>
+                    <button mat-button *ngIf="nCliente.$nrodoc" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="nCliente.$nrodoc=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="documentoFormControl.hasError('required')">
+                        Nro. Documento is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field class="inputFw">
+                <mat-label>Direccion</mat-label>
+                <input matInput type="text" [(ngModel)]="nCliente.$direccion" [formControl]="direccionFormControl">
+                <button mat-button *ngIf="nCliente.$direccion" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nCliente.$direccion=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="direccionFormControl.hasError('minlength')">
+                    Direccion not <strong>valid</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="inputFw">
+                <mat-label>Telefono</mat-label>
+                <input matInput oninput="this.value=this.value.slice(0,this.maxLength)" type="number" maxlength="9"
+                    [formControl]="telefonoFormControl" [(ngModel)]="nCliente.$telefono">
+                <button mat-button *ngIf="nCliente.$telefono" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nCliente.$telefono=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="telefonoFormControl.hasError('minlength')">
+                    Min 4, Max 9 <strong>numbers</strong>
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="inputFw">
+                <mat-label>Correo</mat-label>
+                <input matInput type="text" [formControl]="correoFormControl" [(ngModel)]="nCliente.$correo">
+                <button mat-button *ngIf="nCliente.$correo" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nCliente.$correo=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="correoFormControl.hasError('email')">
+                    Email not <strong>valid</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="containerBtns">
+                <button mat-button color="primary" [disabled]="disableBtn" class="btnFrom cancelBtn"
+                    routerLink="../">Cancelar</button>
+                <button mat-raised-button color="primary" [disabled]="disableBtn" (click)="onSubmit()"
+                    class="btnFrom enviarBtn">
+                    <div class="row centerW centerH">
+
+                        <mat-icon *ngIf="icon">send</mat-icon>
+                        <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+                        <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon>
+                        <span>Add Cliente</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- </form> -->
+        </div>
+
+    </div>
+</div>
