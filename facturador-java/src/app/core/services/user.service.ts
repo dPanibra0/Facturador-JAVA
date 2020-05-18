@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
 export class UserService {
   userData;
 
-  constructor(private http: HttpClient, private cookies: CookieService) {}
+  constructor(
+    private http: HttpClient,
+    private cookies: CookieService,
+    private _route: Router
+  ) {}
 
   login(Username: string, Password: string): Observable<any> {
     let cadena = btoa('sistemas@bytexbyte.com.pe:slacksistemas');
@@ -19,6 +24,10 @@ export class UserService {
         .set('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8')
         .set('Authorization', 'Basic ' + cadena),
     });
+  }
+  logout(): void {
+    this.cookies.deleteAll();
+    this._route.navigate(['/login']);
   }
 
   setToken(token: string) {

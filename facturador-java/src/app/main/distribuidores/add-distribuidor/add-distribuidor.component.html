@@ -2,23 +2,23 @@
   <div class="ccTitle backBtn">
     <div class="baseLine row">
       <span class="icon fas fa-user-plus"></span>
-      <span class="titleCc">Add Cliente </span>
-      
+      <span class="titleCc">Add Distribuidor </span>
+
     </div>
-    <button  mat-icon-button routerLink="../">
+    <button mat-icon-button routerLink="../">
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
   </div>
 
   <div class="cFull row b-r10">
-    <div class="imgForm addClienteImg"></div>
-    <div class="formRegisterCliente">
-      <h1>Nuevo Cliente</h1>
+    <div class="imgForm addDistribuidorImg"></div>
+    <div class="formRegisterDistribuidor">
+      <h1>Nuevo Distribuidor</h1>
       <!-- <form> -->
 
       <mat-form-field class="wFull mb1">
         <mat-label>Nombre</mat-label>
-        <input matInput type="text" [formControl]="nombreFormControl" [(ngModel)]="nCliente.nombre" required>
+        <input matInput type="text" [formControl]="nombreFormControl" [(ngModel)]="nDistribuidor.nombre" required>
         <mat-error *ngIf="nombreFormControl.hasError('required')">
           Nombre is <strong>required</strong>
         </mat-error>
@@ -28,7 +28,7 @@
       <div class="selectorFw wFull mb1">
         <mat-form-field>
           <mat-label>Tipo de Documento</mat-label>
-          <mat-select [(value)]="nCliente.tipodoc" [formControl]="tipodocFormControl">
+          <mat-select [(value)]="nDistribuidor.tipodoc" [formControl]="tipodocFormControl">
             <mat-option value="RUC">RUC</mat-option>
             <mat-option value="DNI">DNI</mat-option>
           </mat-select>
@@ -37,16 +37,19 @@
         <mat-form-field>
           <mat-label>Nro. de Documento</mat-label>
           <input matInput disabled='disableBtn' oninput="this.value=this.value.slice(0,this.maxLength)" type="number"
-            maxlength="11" minlength="8" [formControl]="documentoFormControl" [(ngModel)]="nCliente.nrodoc" required>
+            maxlength="11" minlength="8" [formControl]="documentoFormControl" [(ngModel)]="nDistribuidor.nrodoc"
+            required>
           <mat-error *ngIf="documentoFormControl.hasError('required')">
             Nro. Documento is <strong>required</strong>
           </mat-error>
         </mat-form-field>
       </div>
 
+
+
       <mat-form-field class="wFull mb1">
         <mat-label>Direccion</mat-label>
-        <input matInput type="text" [(ngModel)]="nCliente.direccion" [formControl]="direccionFormControl">
+        <input matInput type="text" [(ngModel)]="nDistribuidor.direccion" [formControl]="direccionFormControl">
         <mat-error *ngIf="direccionFormControl.hasError('minlength')">
           Direccion not <strong>valid</strong>
         </mat-error>
@@ -55,7 +58,7 @@
       <mat-form-field class="wFull mb1">
         <mat-label>Telefono</mat-label>
         <input matInput oninput="this.value=this.value.slice(0,this.maxLength)" type="number" maxlength="9"
-          [formControl]="telefonoFormControl" [(ngModel)]="nCliente.telefono">
+          [formControl]="telefonoFormControl" [(ngModel)]="nDistribuidor.telefono">
         <mat-error *ngIf="telefonoFormControl.hasError('minlength')">
           Min 4, Max 9 <strong>numbers</strong>
         </mat-error>
@@ -64,9 +67,17 @@
 
       <mat-form-field class="wFull mb1">
         <mat-label>Correo</mat-label>
-        <input matInput type="text" [formControl]="correoFormControl" [(ngModel)]="nCliente.correo">
+        <input matInput type="text" [formControl]="correoFormControl" [(ngModel)]="nDistribuidor.correo">
         <mat-error *ngIf="correoFormControl.hasError('email')">
           Email not <strong>valid</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="wFull mb1">
+        <mat-label>Persona de Contacto</mat-label>
+        <input matInput type="text" [(ngModel)]="nDistribuidor.perscontact" [formControl]="perscontactFormControl">
+        <mat-error *ngIf="perscontactFormControl.hasError('minlength')">
+          perscontact not <strong>valid</strong>
         </mat-error>
       </mat-form-field>
 
@@ -80,7 +91,7 @@
             <mat-icon *ngIf="icon">send</mat-icon>
             <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
             <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon>
-            <span>Add Cliente</span>
+            <span>Add Distribuidor</span>
           </div>
         </button>
       </div>

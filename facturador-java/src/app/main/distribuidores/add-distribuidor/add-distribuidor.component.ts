@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '@models/cliente.model';
-import { ClienteService } from '@services/cliente.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
+import { Distribuidor } from '@models/distribuidor.model';
+import { DistribuidorService } from '@services/distribuidor.service';
+import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-cliente',
-  templateUrl: './add-cliente.component.html',
-  styleUrls: ['./add-cliente.component.scss'],
+  selector: 'app-add-distribuidor',
+  templateUrl: './add-distribuidor.component.html',
+  styleUrls: ['./add-distribuidor.component.scss'],
 })
-export class AddClienteComponent implements OnInit {
-  nCliente = new Cliente(0, '', '', '', '', 1, 'RUC', '');
+export class AddDistribuidorComponent implements OnInit {
+  nDistribuidor = new Distribuidor(0, '', '', '', '', 1, 'RUC', '', '');
 
   icon = true;
   disableBtn = false;
@@ -24,26 +23,30 @@ export class AddClienteComponent implements OnInit {
   tipodocFormControl = new FormControl('', [Validators.required]);
   correoFormControl = new FormControl('', [Validators.email]);
   direccionFormControl = new FormControl('', [Validators.minLength(4)]);
+  perscontactFormControl = new FormControl('', [Validators.minLength(4)]);
   telefonoFormControl = new FormControl('', [Validators.minLength(4)]);
 
-  constructor(private _cService: ClienteService,private router: Router,
-    private _snackBar: MatSnackBar,) {}
+  constructor(
+    private _dServices: DistribuidorService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.tipodocFormControl.setValue('RUC');
+    this.nDistribuidor.perscontact
   }
 
   onSubmit() {
-    if (this.nCliente.nombre != '' && this.nCliente.nrodoc != '') {
-      console.log(this.nCliente);
+    if (this.nDistribuidor.nombre != '' && this.nDistribuidor.nrodoc != '') {
+      console.log(this.nDistribuidor);
       this.disableAll();
       this.loading = true;
-      this.registrarCliente(this.nCliente);
-    } else if (this.nCliente.nombre == '') {
+      this.registrarCliente(this.nDistribuidor);
+    } else if (this.nDistribuidor.nombre == '') {
       this.nombreFormControl.markAllAsTouched();
-    } else if (this.nCliente.nrodoc == '') {
+    } else if (this.nDistribuidor.nrodoc == '') {
       this.documentoFormControl.markAllAsTouched();
-      this.nCliente.correo;
     }
   }
   disableAll(): void {
@@ -51,21 +54,21 @@ export class AddClienteComponent implements OnInit {
     this.disableBtn = true;
     this.nombreFormControl.disable();
     this.documentoFormControl.disable();
+    this.perscontactFormControl.disable();
     this.tipodocFormControl.disable();
     this.correoFormControl.disable();
     this.direccionFormControl.disable();
     this.telefonoFormControl.disable();
   }
-  registrarCliente(newCliente: Cliente): void {
-    this._cService.registrarCliente(this.nCliente).subscribe(
+  registrarCliente(newDistribuidor: Distribuidor): void {
+    this._dServices.registrarDistribuidor(newDistribuidor).subscribe(
       (data) => {
+        console.log(data);
         if (data.message == 'Success') {
           this.loading = false;
           this.succes = true;
           this.openSnackBar();
         }
-
-        console.log(data);
       },
       (error) => {
         console.log(error);
@@ -79,9 +82,13 @@ export class AddClienteComponent implements OnInit {
     config.horizontalPosition = 'right';
     config.verticalPosition = 'bottom';
 
-    this._snackBar.open(`${this.nCliente.nombre} ha sido registrado exitosamente`, 'x', config);
+    this._snackBar.open(
+      `Distribuidor ${this.nDistribuidor.nombre} ha sido registrado exitosamente`,
+      'x',
+      config
+    );
     setTimeout(() => {
-      this.router.navigate(['/main/clientes']);
+      this.router.navigate(['/main/distribuidores']);
     }, 500);
   }
 }

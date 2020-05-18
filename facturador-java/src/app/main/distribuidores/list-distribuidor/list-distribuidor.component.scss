@@ -1,0 +1,48 @@
+
+  table {
+    width: 101%;
+    // height: 534px;
+  }
+  .containerTable {
+    position: relative;
+    border: 1px solid rgb(221, 221, 221);
+    width: 100%;
+    // background-color: blanchedalmond;
+    border-radius: 8px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+  }
+  .paginatorTable{
+    position: absolute;
+    padding: 0;
+    width: 100%;
+    // border-top: 1px solid rgb(221, 221, 221);
+    bottom: 0;
+  }
+  
+  table .mat-sort-header {
+    background-color: rgb(221, 221, 221) !important;
+  }
+  .mat-column-iddistrib {
+    //your custom css
+    width: 30px;
+  }
+  .mat-column-tipodoc {
+    //your custom css
+    width: 30px;
+  }
+  .mat-column-nrodoc {
+    //your custom css
+    width: 70px;
+  }
+  .mat-column-telefono {
+    //your custom css
+    width: 70px;
+  }
+  td,
+  th {
+    width: 15%;
+  }
+  

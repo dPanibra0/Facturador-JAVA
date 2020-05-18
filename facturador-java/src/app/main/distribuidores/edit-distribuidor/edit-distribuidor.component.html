@@ -2,7 +2,7 @@
     <div class="ccTitle paddR">
         <div class="baseLine row">
             <span class="icon fas fa-user-edit"></span>
-            <span class="titleCc">Edit Cliente </span>
+            <span class="titleCc">Edit Distribuidor </span>
 
         </div>
         <button mat-icon-button routerLink="../">
@@ -11,19 +11,19 @@
     </div>
 
     <div class="cFull row b-r10">
-        <div class="imgForm addClienteImg"></div>
-        <div class="wFull paddR" *ngIf="!cliente">
+        <div class="imgForm addDistribuidorImg"></div>
+        <div class="wFull paddR" *ngIf="!distribuidor">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>
-        <div class="formRegisterCliente" *ngIf="cliente">
-            <h1>Cliente {{nCliente.idcliente}}</h1>
+        <div class="formRegisterDistribuidor" *ngIf="distribuidor">
+            <h1>Distribuidor {{nDistribuidor.iddistrib}}</h1>
             <!-- <form> -->
 
             <mat-form-field class="wFull mb1">
                 <mat-label>Nombre</mat-label>
-                <input matInput type="text" [formControl]="nombreFormControl" [(ngModel)]="nCliente.nombre" required>
-                <button mat-button *ngIf="nCliente.nombre && !disableBtn" ng matSuffix mat-icon-button
-                    aria-label="Clear" (click)="nCliente.nombre=''">
+                <input matInput type="text" [formControl]="nombreFormControl" [(ngModel)]="nDistribuidor.nombre" required>
+                <button mat-button *ngIf="nDistribuidor.nombre && !disableBtn" ng matSuffix mat-icon-button
+                    aria-label="Clear" (click)="nDistribuidor.nombre=''">
                     <mat-icon>close</mat-icon>
                 </button>
                 <mat-error *ngIf="nombreFormControl.hasError('required')">
@@ -35,7 +35,7 @@
             <div class="wFull mb1 selectorFw">
                 <mat-form-field>
                     <mat-label>Tipo de Documento</mat-label>
-                    <mat-select [(value)]="nCliente.tipodoc" [formControl]="tipodocFormControl">
+                    <mat-select [(value)]="nDistribuidor.tipodoc" [formControl]="tipodocFormControl">
                         <mat-option value="RUC">RUC</mat-option>
                         <mat-option value="DNI">DNI</mat-option>
                     </mat-select>
@@ -45,9 +45,9 @@
                     <mat-label>Nro. de Documento</mat-label>
                     <input matInput disabled='disableBtn' oninput="this.value=this.value.slice(0,this.maxLength)"
                         type="number" maxlength="11" minlength="8" [formControl]="documentoFormControl"
-                        [(ngModel)]="nCliente.nrodoc" required>
-                    <button mat-button *ngIf="nCliente.nrodoc && !disableBtn" matSuffix mat-icon-button
-                        aria-label="Clear" (click)="nCliente.nrodoc=''">
+                        [(ngModel)]="nDistribuidor.nrodoc" required>
+                    <button mat-button *ngIf="nDistribuidor.nrodoc && !disableBtn" matSuffix mat-icon-button
+                        aria-label="Clear" (click)="nDistribuidor.nrodoc=''">
                         <mat-icon>close</mat-icon>
                     </button>
                     <mat-error *ngIf="documentoFormControl.hasError('required')">
@@ -58,9 +58,9 @@
 
             <mat-form-field class="wFull mb1">
                 <mat-label>Direccion</mat-label>
-                <input matInput type="text" [(ngModel)]="nCliente.direccion" [formControl]="direccionFormControl">
-                <button mat-button *ngIf="nCliente.direccion && !disableBtn" matSuffix mat-icon-button
-                    aria-label="Clear" (click)="nCliente.direccion=''">
+                <input matInput type="text" [(ngModel)]="nDistribuidor.direccion" [formControl]="direccionFormControl">
+                <button mat-button *ngIf="nDistribuidor.direccion && !disableBtn" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="nDistribuidor.direccion=''">
                     <mat-icon>close</mat-icon>
                 </button>
                 <mat-error *ngIf="direccionFormControl.hasError('minlength')">
@@ -71,9 +71,9 @@
             <mat-form-field class="wFull mb1">
                 <mat-label>Telefono</mat-label>
                 <input matInput oninput="this.value=this.value.slice(0,this.maxLength)" type="number" maxlength="9"
-                    [formControl]="telefonoFormControl" [(ngModel)]="nCliente.telefono">
-                <button mat-button *ngIf="nCliente.telefono && !disableBtn" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="nCliente.telefono=''">
+                    [formControl]="telefonoFormControl" [(ngModel)]="nDistribuidor.telefono">
+                <button mat-button *ngIf="nDistribuidor.telefono && !disableBtn" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nDistribuidor.telefono=''">
                     <mat-icon>close</mat-icon>
                 </button>
                 <mat-error *ngIf="telefonoFormControl.hasError('minlength')">
@@ -84,9 +84,9 @@
 
             <mat-form-field class="wFull mb1">
                 <mat-label>Correo</mat-label>
-                <input matInput type="text" [formControl]="correoFormControl" [(ngModel)]="nCliente.correo">
-                <button mat-button *ngIf="nCliente.correo && !disableBtn" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="nCliente.correo=''">
+                <input matInput type="text" [formControl]="correoFormControl" [(ngModel)]="nDistribuidor.correo">
+                <button mat-button *ngIf="nDistribuidor.correo && !disableBtn" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nDistribuidor.correo=''">
                     <mat-icon>close</mat-icon>
                 </button>
                 <mat-error *ngIf="correoFormControl.hasError('email')">
@@ -94,10 +94,22 @@
                 </mat-error>
             </mat-form-field>
 
+            <mat-form-field class="wFull mb1">
+                <mat-label>Persona de Contacto</mat-label>
+                <input matInput type="text" [(ngModel)]="nDistribuidor.perscontact" [formControl]="perscontactFormControl">
+                <button mat-button *ngIf="nDistribuidor.perscontact && !disableBtn" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nDistribuidor.perscontact=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="perscontactFormControl.hasError('minlength')">
+                  perscontact not <strong>valid</strong>
+                </mat-error>
+              </mat-form-field>
+
             <div class="betweenC">
                 <button mat-flat-button color="warn" (click)="openDialog()" [disabled]="disableEdit" class="btnFrom">
                     <mat-icon >delete</mat-icon>
-                    <span>Eliminar Cliente</span>
+                    <span>Eliminar Distribuidor</span>
                 </button>
                 <div>
 
@@ -109,7 +121,7 @@
                             <mat-icon >edit</mat-icon>
                             <!-- <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
                             <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon> -->
-                            <span>Edit Cliente</span>
+                            <span>Edit Distribuidor</span>
                     </button>
 
                     <button mat-raised-button color="primary" *ngIf="editing" [disabled]="disableBtn" (click)="onSubmit()"

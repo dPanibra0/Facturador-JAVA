@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="dltTitle">Confirmar</h1>
+<div mat-dialog-content class="rowdialog-content">
+    <div >
+        <mat-icon color='warn' class="dltIcon">warning</mat-icon>
+    </div>
+    <div>
+        <p>Esta seguro de querer eliminar al <span class="dltTitle">{{data.type}} {{data.name}} ?</span></p>
+    </div>
+
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button color="warn" (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="warn" [mat-dialog-close]="true" (click)="openSnackBar()">Eliminar {{data.type}}</button>
+</mat-dialog-actions>

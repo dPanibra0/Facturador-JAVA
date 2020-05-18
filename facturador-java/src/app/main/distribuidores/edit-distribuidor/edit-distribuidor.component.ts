@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Cliente } from '@models/cliente.model';
-import { ClienteService } from '@services/cliente.service';
+import { Distribuidor } from '@models/distribuidor.model';
+import { DistribuidorService } from '@services/distribuidor.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,12 +12,12 @@ export interface DialogData {
   name: string;
 }
 @Component({
-  selector: 'app-edit-cliente',
-  templateUrl: './edit-cliente.component.html',
-  styleUrls: ['./edit-cliente.component.scss'],
+  selector: 'app-edit-distribuidor',
+  templateUrl: './edit-distribuidor.component.html',
+  styleUrls: ['./edit-distribuidor.component.scss'],
 })
-export class EditClienteComponent implements OnInit {
-  nCliente = new Cliente(0, '', '', '', '', 1, 'RUC', '');
+export class EditDistribuidorComponent implements OnInit {
+  nDistribuidor = new Distribuidor(0, '', '', '', '', 1, 'RUC', '', '');
   course: any;
   icon = true;
   disableBtn = false;
@@ -25,7 +25,7 @@ export class EditClienteComponent implements OnInit {
   loading = false;
   succes = false;
 
-  cliente = false;
+  distribuidor = false;
 
   editing = false;
 
@@ -37,10 +37,11 @@ export class EditClienteComponent implements OnInit {
   tipodocFormControl = new FormControl('', [Validators.required]);
   correoFormControl = new FormControl('', [Validators.email]);
   direccionFormControl = new FormControl('', [Validators.minLength(4)]);
+  perscontactFormControl = new FormControl('', [Validators.minLength(4)]);
   telefonoFormControl = new FormControl('', [Validators.minLength(4)]);
 
   constructor(
-    private _cService: ClienteService,
+    private _cService: DistribuidorService,
     private router: Router,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
@@ -48,23 +49,23 @@ export class EditClienteComponent implements OnInit {
   ) {
     this.route.params.subscribe((params) => {
       this.course = params.id;
-      this.getCliente(this.course);
+      this.getDistribuidor(this.course);
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {this.nDistribuidor.iddistrib}
 
   onSubmit() {
-    if (this.nCliente.nombre != '' && this.nCliente.nrodoc != '') {
-      console.log(this.nCliente);
+    if (this.nDistribuidor.nombre != '' && this.nDistribuidor.nrodoc != '') {
+      console.log(this.nDistribuidor);
       this.disableAll();
       this.loading = true;
-      this.registrarCliente(this.nCliente);
-    } else if (this.nCliente.nombre == '') {
+      this.registrarDistribuidor(this.nDistribuidor);
+    } else if (this.nDistribuidor.nombre == '') {
       this.nombreFormControl.markAllAsTouched();
-    } else if (this.nCliente.nrodoc == '') {
+    } else if (this.nDistribuidor.nrodoc == '') {
       this.documentoFormControl.markAllAsTouched();
-      this.nCliente.correo;
+      this.nDistribuidor.correo;
     }
   }
   disableAll(): void {
@@ -75,22 +76,23 @@ export class EditClienteComponent implements OnInit {
     this.tipodocFormControl.disable();
     this.correoFormControl.disable();
     this.direccionFormControl.disable();
+    this.perscontactFormControl.disable();
     this.telefonoFormControl.disable();
   }
-  getCliente(idCliente: number): void {
-    this._cService.getClienteById(idCliente).subscribe(
-      (data: Cliente) => {
-        this.nCliente = Object.assign(data);
-        this.nCliente.tipodoc = data.tipodoc;
-        this.cliente = true;
+  getDistribuidor(idDistribuidor: number): void {
+    this._cService.getDistribuidorById(idDistribuidor).subscribe(
+      (data: Distribuidor) => {
+        this.nDistribuidor = Object.assign(data);
+        this.nDistribuidor.tipodoc = data.tipodoc;
+        this.distribuidor = true;
         this.tipodocFormControl.setValue(`${data.tipodoc}`);
         this.disableAll();
       },
       (error) => {}
     );
   }
-  registrarCliente(newCliente: Cliente): void {
-    this._cService.editCliente(newCliente).subscribe(
+  registrarDistribuidor(newDistribuidor: Distribuidor): void {
+    this._cService.editDistribuidor(newDistribuidor).subscribe(
       (data) => {
         if (data.message == 'Success') {
           this.loading = false;
@@ -112,6 +114,7 @@ export class EditClienteComponent implements OnInit {
     this.disableBtn = false;
     this.nombreFormControl.enable();
     this.documentoFormControl.enable();
+    this.perscontactFormControl.enable();
     this.tipodocFormControl.enable();
     this.correoFormControl.enable();
     this.direccionFormControl.enable();
@@ -125,31 +128,31 @@ export class EditClienteComponent implements OnInit {
     config.verticalPosition = 'bottom';
 
     this._snackBar.open(
-      `Cliente ${this.nCliente.nombre} ha sido editado exitosamente`,
+      `Distribuidor ${this.nDistribuidor.nombre} ha sido editado exitosamente`,
       'x',
       config
     );
     setTimeout(() => {
-      this.router.navigate(['/main/clientes']);
+      this.router.navigate(['/main/distribuidores']);
     }, 1500);
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '400px',
-      data: { type: 'Cliente', name: this.nCliente.nombre },
+      data: { type: 'Distribuidor', name: this.nDistribuidor.nombre },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
-        this.deleteCliente(this.nCliente.idcliente);
+        this.deleteDistribuidor(this.nDistribuidor.iddistrib);
       }
     });
   }
-  deleteCliente(idCliente: number): void {
-    this._cService.deleteCliente(idCliente).subscribe(
+  deleteDistribuidor(idDistribuidor: number): void {
+    this._cService.deleteDistribuidor(idDistribuidor).subscribe(
       (data) => {
         console.log(data);
-        this.router.navigate(['/main/clientes']);
+        this.router.navigate(['/main/distribuidores']);
       },
       (error) => {
         console.log(error);
