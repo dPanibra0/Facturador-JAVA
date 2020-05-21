@@ -1,0 +1,58 @@
+<div class="cContainer mat-elevation-z2 mt1">
+    <div class="ccTitle ">
+      <div>
+        <span class="icon fas fa-users"></span>
+        <span class="titleCc">Usuarios </span>
+      </div>
+      <div class="centerW">
+  
+    <mat-form-field appearance="outline" class="searchData">
+      <mat-label>Buscar Usuario</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Id Nombre Doc">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+        <button mat-flat-button class="ccTitleBtn" routerLink="add">
+          <mat-icon>add_circle_outline</mat-icon>
+          <span>Add Usuario</span>
+        </button>
+      </div>
+    </div>
+    
+    <mat-progress-bar mode="indeterminate" *ngIf="load"></mat-progress-bar>
+  <div class="wFull mt1" *ngIf="dvoid"><h3>No hay Usuarios por el momento</h3></div>
+    <div class="containerTable" *ngIf="usuarios">
+      <table mat-table [dataSource]="dataSource" matSort>
+  
+        <!-- ID Column -->
+        <ng-container matColumnDef="idusuario">
+          <th id="idusuario" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td #id mat-cell *matCellDef="let row"> {{row.idusuario}} </td>
+        </ng-container>
+  
+  
+        <!-- Name Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let row"><a [routerLink]="['/main/usuarios',row.idusuario]">{{row.nombre}}</a>  </td>
+        </ng-container>
+  
+        <!-- Color Column -->
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+          <td mat-cell *matCellDef="let row"> {{row.usuario}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> tipo </th>
+            <td mat-cell *matCellDef="let row"> {{row.tipo?'vendedor':'admin'}} </td>
+          </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10]" class="paginatorTable"></mat-paginator>
+  
+    </div>
+    
+  </div>

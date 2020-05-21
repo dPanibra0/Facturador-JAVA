@@ -1,0 +1,24 @@
+<div class="cContainer mat-elevation-z2 mt1">
+    <div class="ccTitle ">
+      <div>
+        <span class="icon fas fa-clipboard-list"></span>
+        <span class="titleCc">Inventario </span>
+      </div>
+      <div class="centerW">
+  
+    <mat-form-field appearance="outline" class="searchData">
+      <mat-label>Buscar Producto</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Id Nombre Nro.">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+        <button mat-flat-button class="ccTitleBtn" routerLink="add">
+          <mat-icon>add_circle_outline</mat-icon>
+          <span>Add Producto</span>
+        </button>
+      </div>
+    </div>
+    
+    <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+  
+    
+  </div>

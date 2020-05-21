@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule)
     ,canActivate:[LogedGuard]
   },
-  { path: '**', component: LoginComponent },
+  { path: '**',redirectTo:'login' },
 ];
 
 @NgModule({

@@ -13,20 +13,26 @@ import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.
 
 import { VentasComponent } from './ventas/ventas.component';
 import { ComprasComponent } from './compras/compras.component';
-import { InventarioComponent } from './inventario/inventario.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { HomeComponent } from './home/home.component';
-
+// Clientes
 import { AddClienteComponent } from './clientes/add-cliente/add-cliente.component';
 import { EditClienteComponent } from './clientes/edit-cliente/edit-cliente.component';
 import { ListClienteComponent } from './clientes/list-cliente/list-cliente.component';
-
+// Distribuidores
 import { AddDistribuidorComponent } from './distribuidores/add-distribuidor/add-distribuidor.component';
 import { EditDistribuidorComponent } from './distribuidores/edit-distribuidor/edit-distribuidor.component';
 import { ListDistribuidorComponent } from './distribuidores/list-distribuidor/list-distribuidor.component';
+// Usuarios
+import { AddUsuarioComponent } from './usuarios/add-usuario/add-usuario.component';
+import { EditUsuarioComponent } from './usuarios/edit-usuario/edit-usuario.component';
+import { ListUsuarioComponent } from './usuarios/list-usuario/list-usuario.component';
+// Productos
+import { ListProductoComponent } from './inventario/list-producto/list-producto.component';
+import { AddProductoComponent } from './inventario/add-producto/add-producto.component';
+import { EditProductoComponent } from './inventario/edit-producto/edit-producto.component';
 
 @NgModule({
   declarations: [
@@ -36,20 +42,24 @@ import { ListDistribuidorComponent } from './distribuidores/list-distribuidor/li
     ContainerComponent,
     VentasComponent,
     ComprasComponent,
-    InventarioComponent,
-    UsuariosComponent,
     ReportesComponent,
     ConfiguracionesComponent,
     BusquedaComponent,
     HomeComponent,
     UserComponent,
+    DeleteDialogComponent,
     AddClienteComponent,
     EditClienteComponent,
     ListClienteComponent,
-    DeleteDialogComponent,
     AddDistribuidorComponent,
     EditDistribuidorComponent,
     ListDistribuidorComponent,
+    AddUsuarioComponent,
+    EditUsuarioComponent,
+    ListUsuarioComponent,
+    AddProductoComponent,
+    EditProductoComponent,
+    ListProductoComponent,
   ],
   imports: [CommonModule, MainRoutingModule, MaterialModule],
   entryComponents:[DeleteDialogComponent]

@@ -1,0 +1,95 @@
+<div class="cContainer mat-elevation-z2 mt1">
+    <div class="ccTitle backBtn">
+        <div class="baseLine row">
+            <span class="icon fas fa-user-plus"></span>
+            <span class="titleCc">Add Usuario </span>
+
+        </div>
+        <button mat-icon-button routerLink="../">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+    </div>
+
+    <div class="cFull row b-r10">
+        <div class="imgForm addUsuarioImg"></div>
+        <div class="formRegisterUsuario">
+            <h1>Nuevo Usuario</h1>
+            <!-- <form> -->
+            <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+
+                <mat-form-field class="wFull mb1">
+                    <mat-label>Nombre</mat-label>
+                    <input [(ngModel)]="nUsuario.nombre" matInput type="text" formControlName="nombre" required>
+                    <mat-error *ngIf="myForm.get('nombre').hasError('required')">
+                        Nombre is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+
+                <div class="selectorFw wFull mb1">
+                    <mat-form-field>
+                        <mat-label>Tipo de Usuario</mat-label>
+                        <mat-select [(value)]="nUsuario.tipo" formControlName="tipo">
+                            <mat-option value="1">Vendedor</mat-option>
+                            <mat-option value="0">Admin</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Correo</mat-label>
+                        <input matInput type="text" formControlName="correo" [(ngModel)]="nUsuario.usuario" required>
+                        <mat-error *ngIf="myForm.get('correo').hasError('email')">
+                            Email not <strong>valid</strong>
+                        </mat-error>
+                        <mat-error *ngIf="myForm.get('correo').hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field class="wFull mb1">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput formControlName="password" [(ngModel)]="nUsuario.pass"
+                        [type]="hide ? 'password' : 'text'">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon class="iconForm">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="myForm.get('password').hasError('minlength')">
+                        La contraseña debe tener mas de 5 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="myForm.get('password').hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="wFull mb1">
+                    <mat-label>Confirmar Contraseña </mat-label>
+                    <input matInput type="password" formControlName="confirmPassword" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="myForm.hasError('notSame')">
+                        Las contraseñas deben ser iguales
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="containerBtns">
+                    <button type="button" mat-button color="primary" [disabled]="disableBtn" class="btnFrom cancelBtn"
+                        routerLink="../">Cancelar</button>
+                    <button type="submit" mat-raised-button color="primary" [disabled]="disableBtn" 
+                        class="btnFrom enviarBtn">
+                        <div class="row centerW centerH">
+
+                            <mat-icon *ngIf="icon">send</mat-icon>
+                            <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+                            <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon>
+                            <span>Add Usuario</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- </form> -->
+            </form>
+
+        </div>
+
+    </div>
+</div>

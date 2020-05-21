@@ -28,10 +28,7 @@ export class EditDistribuidorComponent implements OnInit {
   distribuidor = false;
 
   editing = false;
-
-  animal: string;
-  name: string;
-
+  
   nombreFormControl = new FormControl('', [Validators.required]);
   documentoFormControl = new FormControl('', [Validators.required]);
   tipodocFormControl = new FormControl('', [Validators.required]);
