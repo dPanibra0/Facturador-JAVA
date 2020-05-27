@@ -19,7 +19,7 @@
 
                 <mat-form-field class="wFull mb1">
                     <mat-label>Nombre</mat-label>
-                    <input [(ngModel)]="nUsuario.nombre" matInput type="text" formControlName="nombre" required>
+                    <input  matInput type="text" formControlName="nombre" required>
                     <mat-error *ngIf="myForm.get('nombre').hasError('required')">
                         Nombre is <strong>required</strong>
                     </mat-error>

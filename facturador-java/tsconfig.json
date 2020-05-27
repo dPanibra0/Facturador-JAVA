@@ -21,10 +21,16 @@
       "@guards/*":["src/app/core/guards/*"],
       "@images/*":["src/assets/images/*"],
       "@environments/*":["src/environments/*"],
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "include": [
+    ".",
+    "../node_modules/@wtw/**/*",
+    "src/app/core/models/producto.model.ts"
+  ]
 }

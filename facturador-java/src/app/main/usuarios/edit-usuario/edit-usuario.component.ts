@@ -56,6 +56,7 @@ export class EditUsuarioComponent implements OnInit {
   editing = false;
 
   confirmPass='';
+  editUser=false;
   editConfirm=false;
 
   constructor(
@@ -104,6 +105,8 @@ export class EditUsuarioComponent implements OnInit {
     this.editing = true;
     this.disableBtn = false;
     this.myForm.enable();
+    this.editUser=true;
+    this.nUsuario.pass='';
   }
   registrarUsuario(newUsuario: Usuario): void {
     this._dServices.registrarUsuario(newUsuario).subscribe(

@@ -1,24 +1,94 @@
 <div class="cContainer mat-elevation-z2 mt1">
-    <div class="ccTitle ">
-      <div>
-        <span class="icon fas fa-clipboard-list"></span>
-        <span class="titleCc">Inventario </span>
-      </div>
-      <div class="centerW">
-  
-    <mat-form-field appearance="outline" class="searchData">
-      <mat-label>Buscar Producto</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Id Nombre Nro.">
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-        <button mat-flat-button class="ccTitleBtn" routerLink="add">
-          <mat-icon>add_circle_outline</mat-icon>
-          <span>Add Producto</span>
-        </button>
-      </div>
+  <div class="ccTitle ">
+    <div>
+      <span class="icon fas fa-clipboard-list"></span>
+      <span class="titleCc">Inventario </span>
     </div>
-    
-    <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
-  
-    
+    <div class="centerW">
+
+      <mat-form-field appearance="outline" class="searchData">
+        <mat-label>Buscar Producto</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Id Nombre Nro.">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <button mat-flat-button class="ccTitleBtn" routerLink="add">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Add Producto</span>
+      </button>
+    </div>
   </div>
+
+  <mat-progress-bar mode="indeterminate" *ngIf="!productos"></mat-progress-bar>
+  <div class="containerTable" *ngIf="productos">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="codproducto">
+        <th id="codproducto" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td #id mat-cell *matCellDef="let row"> {{row.codproducto}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="codbarra">
+        <th id="codbarra" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td #id mat-cell *matCellDef="let row"> {{row.codbarra}} </td>
+      </ng-container>
+
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> producto </th>
+        <td mat-cell *matCellDef="let row"><a [routerLink]="['/main/inventario',row.codproducto]">{{row.producto}}</a>
+        </td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="detalles">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Doc </th>
+        <td mat-cell *matCellDef="let row"> {{row.detalles}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nro. Doc </th>
+        <td mat-cell *matCellDef="let row"> {{row.marca}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="unimedida">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+        <td mat-cell *matCellDef="let row"> {{row.unimedida}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contacto</th>
+        <td mat-cell *matCellDef="let row"> {{row.categoria}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="iddistrib">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> iddistrib </th>
+        <td mat-cell *matCellDef="let row"> {{row.iddistrib}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> cantidad </th>
+        <td mat-cell *matCellDef="let row"> {{row.cantidad}} </td>
+      </ng-container>
+      <ng-container matColumnDef="preciove">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> preciove </th>
+        <td mat-cell *matCellDef="let row"> {{row.preciove}} </td>
+      </ng-container>
+      <ng-container matColumnDef="precioco">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> precioco </th>
+        <td mat-cell *matCellDef="let row"> {{row.precioco}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ptjganancia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ptjganancia </th>
+        <td mat-cell *matCellDef="let row"> {{row.ptjganancia}}% </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10]" class="paginatorTable"></mat-paginator>
+
+  </div>
+
+</div>

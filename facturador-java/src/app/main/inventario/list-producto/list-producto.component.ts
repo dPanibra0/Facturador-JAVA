@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Producto } from '@models/producto.model';
+import { ProductoService } from '@services/producto.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductoService } from '@services/producto.service';
-import { Producto } from '@models/producto.model';
 
 @Component({
   selector: 'app-list-producto',
@@ -12,14 +12,18 @@ import { Producto } from '@models/producto.model';
 })
 export class ListProductoComponent implements OnInit {
   displayedColumns: string[] = [
+    'codproducto',
+    'codbarra',
+    'producto',
+    'detalles',
+    'marca',
+    'unimedida',
+    'categoria',
     'iddistrib',
-    'nombre',
-    'tipodoc',
-    'nrodoc',
-    'direccion',
-    'telefono',
-    'correo',
-    'perscontact',
+    'cantidad',
+    'preciove',
+    'precioco',
+    'ptjganancia',
   ];
   dataSource: MatTableDataSource<Producto>;
   productos: Array<Producto>;
@@ -56,9 +60,8 @@ export class ListProductoComponent implements OnInit {
         if (data.length == 0) {
           this.dvoid = true;
         } else {
-          this.productos = data;
-          
-          // this.matTable(this.productos);
+          this.productos = data;          
+          this.matTable(this.productos);
         }
       },
       (error) => {

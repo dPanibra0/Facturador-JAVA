@@ -2,7 +2,7 @@
     <div class="ccTitle backBtn">
         <div class="baseLine row">
             <span class="icon fas fa-user-plus"></span>
-            <span class="titleCc">Add Usuario </span>
+            <span class="titleCc">Usuario Detalles</span>
 
         </div>
         <button mat-icon-button routerLink="../">
@@ -58,7 +58,7 @@
                     </mat-form-field>
                 </div>
 
-                <mat-form-field class="wFull mb1">
+                <mat-form-field class="wFull mb1" *ngIf="editUser">
                     <mat-label>Contraseña</mat-label>
                     <input matInput formControlName="password" [(ngModel)]="nUsuario.pass"
                         [type]="hide ? 'password' : 'text'">
@@ -74,7 +74,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="wFull mb1" *ngIf="editConfirm">
+                <mat-form-field class="wFull mb1" *ngIf="editUser">
                     <mat-label>Confirmar Contraseña </mat-label>
                     <input matInput type="password" [(ngModel)]="confirmPass" formControlName="confirmPassword" [errorStateMatcher]="matcher">
                     <mat-error *ngIf="myForm.hasError('notSame')">

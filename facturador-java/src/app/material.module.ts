@@ -18,6 +18,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -40,6 +43,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     MatProgressBarModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule
   ],
   exports: [
     MatIconModule,
@@ -61,6 +67,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     MatProgressBarModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule
   ],
 })
 export class MaterialModule {}
