@@ -1,1 +1,220 @@
-<p>edit-producto works!</p>
+<div class="cContainer mat-elevation-z2 mt1">
+    <div class="ccTitle backBtn">
+        <div class="baseLine row">
+            <span class="icon fas fa-notes-medical"></span>
+            <span class="titleCc">Add Producto </span>
+
+        </div>
+        <button mat-icon-button routerLink="../">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+    </div>
+
+    <div class="cFull row b-r10">
+        <div class="imgForm addProductoImg"></div>
+        <div class="wFull paddR" *ngIf="!distr">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+        <div class="formRegisterProducto" *ngIf="distr">
+            <h1>Producto {{nProducto.codproducto}}</h1>
+            <!-- <form> -->
+            <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+
+
+                <div class="selectorFw wFull">
+                    <mat-form-field>
+                        <mat-label>Nombre del Producto</mat-label>
+                        <input matInput type="text" [(ngModel)]="nProducto.producto" formControlName="nombre" [disabled]="disableInput" required>
+                        <mat-error *ngIf="myForm.get('nombre').hasError('required')">
+                            Nombre is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Descripcion</mat-label>
+                        <input matInput type="text" [(ngModel)]="nProducto.detalles"
+                            [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                    </mat-form-field>
+                </div>
+                <div class="selectorFw wFull mb1">
+                    <mat-form-field class="wFull mb1">
+                        <mat-label>Marca</mat-label>
+                        <input matInput type="text" [(ngModel)]="nProducto.marca" [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                    </mat-form-field>
+
+                    <mat-form-field class="wFull mb1">
+                        <mat-label>Codigo Interno/ de Barras</mat-label>
+                        <input matInput type="number" #codigoBarras
+                            oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="20"
+                            [(ngModel)]="nProducto.codbarra" [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                        <mat-hint align="end">{{codigoBarras.value.length}} / 20</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="wFull mb1 container-1-4">
+                    <mat-form-field>
+                        <mat-label>Unit. Medida</mat-label>
+                        <mat-select [(value)]="nProducto.unimedida" [disabled]="disableInput">
+                            <mat-option *ngFor="let unimedida of medidas" [value]="unimedida">{{unimedida}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Categoria</mat-label>
+                        <mat-select [(value)]="nProducto.categoria" [disabled]="disableInput">
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria">{{categoria}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="mb1">
+                        <mat-label>Distribuidor</mat-label>
+                        <mat-select [(value)]="nProducto.iddistrib" [disabled]="disableInput">
+                            <mat-option *ngFor="let distribuidor of distribuidores" [value]="distribuidor.iddistrib">
+                                {{distribuidor.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Fecha de Vencimiento</mat-label>
+                        <input matInput type="date" [(ngModel)]="nProducto.fechavenc" [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                    </mat-form-field>
+                </div>
+
+                <div class="wFull mb1 mt1 container-1-4">
+                    <mat-form-field>
+                        <mat-label><strong>Stock Inicial</strong> </mat-label>
+                        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0"
+                            maxlength="6" [(ngModel)]="nProducto.cantidad" [ngModelOptions]="{standalone: true}" [disabled]="disableInput"
+                            required>
+                        <mat-error>
+                            Stock Inicial is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Stock Mínimo</mat-label>
+                        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0"
+                            maxlength="6" [(ngModel)]="nProducto.cantmin" [ngModelOptions]="{standalone: true}" [disabled]="disableInput"
+                            required>
+                        <mat-error>
+                            Stock Mínimo is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label><strong>Precio de Venta</strong></mat-label>
+                        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0"
+                            maxlength="8" [(ngModel)]="nProducto.preciove" [ngModelOptions]="{standalone: true}" [disabled]="disableInput"
+                            required>
+                        <span matPrefix>$&nbsp;</span>
+                        <mat-error>
+                            Precio de Venta is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Precio de Compra</mat-label>
+                        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0"
+                            maxlength="8" [(ngModel)]="nProducto.precioco" [ngModelOptions]="{standalone: true}" [disabled]="disableInput"
+                            required>
+                        <span matPrefix>$&nbsp;</span>
+                        <mat-error>
+                            Precio de Compra is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div class="container-1-3 mb1">
+                    <div class="wFull centerW centerH ptjganancia">
+
+                        <mat-form-field >
+                            <mat-label>Porcentaje de Ganancia</mat-label>
+                            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0"
+                            maxlength="2" [(ngModel)]="nProducto.ptjganancia" [ngModelOptions]="{standalone: true}" [disabled]="disableInput"
+                            required>
+                            <span matSuffix>%</span>
+                            <mat-error>
+                                Porcentaje is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <fieldset class="promocion">
+
+                        <legend>Promocion 1</legend>
+                        <mat-form-field>
+                            <mat-label>Nombre</mat-label>
+                            <input matInput type="text" [(ngModel)]="nProducto.promo1"
+                                [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Cantidad</mat-label>
+                            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)"
+                                min="0" maxlength="5" [(ngModel)]="nProducto.cantp1"
+                                [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Precio</mat-label>
+                            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)"
+                                min="0" maxlength="6" [(ngModel)]="nProducto.prep1"
+                                [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                            <span matPrefix>$&nbsp;</span>
+                        </mat-form-field>
+                    </fieldset>
+                    <fieldset class="promocion">
+
+                        <legend>Promocion 2</legend>
+                        <mat-form-field>
+                            <mat-label>Nombre</mat-label>
+                            <input matInput type="text" [(ngModel)]="nProducto.promo2"
+                                [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Cantidad</mat-label>
+                            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)"
+                                min="0" maxlength="5" [(ngModel)]="nProducto.cantp2"
+                                [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                        </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Precio</mat-label>
+                            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)"
+                                min="0" maxlength="6" [(ngModel)]="nProducto.prep2"
+                                [ngModelOptions]="{standalone: true}" [disabled]="disableInput">
+                            <span matPrefix>$&nbsp;</span>
+                        </mat-form-field>
+                    </fieldset>
+
+
+                </div>
+
+                <div class="betweenC">
+                    <button mat-flat-button type="button" color="warn" (click)="openDialog()" [disabled]="disableEdit" class="btnFrom">
+                        <mat-icon >delete</mat-icon>
+                        <span>Eliminar Producto</span>
+                    </button>
+                    <div>
+    
+                        <button mat-button type="button" color="primary" [disabled]="disableEdit" class="btnFrom mr3"
+                            routerLink="../">Cancelar</button>
+                        <button mat-raised-button type="button" color="primary" *ngIf="!editing" [disabled]="disableEdit" (click)="editOn()"
+                            class="btnFrom enviarBtn">
+    
+                                <mat-icon >edit</mat-icon>
+                                <!-- <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+                                <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon> -->
+                                <span>Edit Producto</span>
+                        </button>
+    
+                        <button mat-raised-button type="submit" color="primary" *ngIf="editing" [disabled]="disableBtn" 
+                            class="btnFrom enviarBtn">
+                            <div class="row centerW centerH">
+                                <mat-icon *ngIf="icon">save</mat-icon>
+                                <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+                                <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon>
+                                <span>Guardar Cambios</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- </form> -->
+        </div>
+
+    </div>
+</div>

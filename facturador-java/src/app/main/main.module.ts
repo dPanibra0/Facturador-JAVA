@@ -12,7 +12,6 @@ import { UserComponent } from './components/user/user.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
 import { VentasComponent } from './ventas/ventas.component';
-import { ComprasComponent } from './compras/compras.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
@@ -33,6 +32,10 @@ import { ListUsuarioComponent } from './usuarios/list-usuario/list-usuario.compo
 import { ListProductoComponent } from './inventario/list-producto/list-producto.component';
 import { AddProductoComponent } from './inventario/add-producto/add-producto.component';
 import { EditProductoComponent } from './inventario/edit-producto/edit-producto.component';
+// Compras
+import { ListComprasComponent } from './compras/list-compras/list-compras.component';
+import { AddComprasComponent } from './compras/add-compras/add-compras.component';
+import { EditComprasComponent } from './compras/edit-compras/edit-compras.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,6 @@ import { EditProductoComponent } from './inventario/edit-producto/edit-producto.
     SidebarMenuComponent,
     ContainerComponent,
     VentasComponent,
-    ComprasComponent,
     ReportesComponent,
     ConfiguracionesComponent,
     BusquedaComponent,
@@ -60,6 +62,9 @@ import { EditProductoComponent } from './inventario/edit-producto/edit-producto.
     AddProductoComponent,
     EditProductoComponent,
     ListProductoComponent,
+    ListComprasComponent,
+    AddComprasComponent,
+    EditComprasComponent,
   ],
   imports: [CommonModule, MainRoutingModule, MaterialModule],
   entryComponents:[DeleteDialogComponent]
