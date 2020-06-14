@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main.component';
 import { HomeComponent } from './home/home.component';
-import { VentasComponent } from './ventas/ventas.component';
 
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
@@ -29,14 +28,19 @@ import { EditProductoComponent } from './inventario/edit-producto/edit-producto.
 import { ListComprasComponent } from './compras/list-compras/list-compras.component';
 import { AddComprasComponent } from './compras/add-compras/add-compras.component';
 import { EditComprasComponent } from './compras/edit-compras/edit-compras.component';
-
+// Ventas
+import { AddVentaComponent } from './ventas/add-venta/add-venta.component';
+import { EditVentaComponent } from './ventas/edit-venta/edit-venta.component';
+import { ListVentaComponent } from './ventas/list-venta/list-venta.component';
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'ventas', component: VentasComponent },
+      { path: 'ventas', component: ListVentaComponent },
+      { path: 'ventas/add', component: AddVentaComponent },
+      { path: 'ventas/:id', component: EditVentaComponent },
       { path: 'distribuidores', component: ListDistribuidorComponent },
       { path: 'distribuidores/add', component: AddDistribuidorComponent },
       { path: 'distribuidores/:id', component: EditDistribuidorComponent },

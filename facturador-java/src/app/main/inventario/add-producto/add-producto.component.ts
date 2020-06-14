@@ -59,6 +59,10 @@ export class AddProductoComponent implements OnInit {
     'Milimetro',
     'Pulgada',
     'Pie',
+    'Unidad',
+    'Decena',
+    'Docena',
+
   ];
   categorias: string[] = [
     'General',

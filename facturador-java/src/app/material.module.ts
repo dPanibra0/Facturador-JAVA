@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatTooltipModule,
   ],
   exports: [
     MatIconModule,
@@ -69,7 +71,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatTooltipModule
   ],
 })
 export class MaterialModule {}

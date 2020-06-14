@@ -1,0 +1,67 @@
+<div class="diaProducTitle">
+    <div class="titleProduc column">
+        <h1>{{data.producto.producto}} {{data.producto.marca}}</h1>
+        <span>{{data.producto.detalles}}</span>
+    </div>
+
+    <mat-form-field appearance="outline" class="cantProd">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-content class="contentProd">
+    <!-- Select Promo -->
+    <div class="centerW ">
+        <p>Esta seguro de querer eliminar al <span class="dltTitle"></span></p>
+    </div>
+    <div class="inputProd">
+        <mat-form-field appearance="outline" class="iContProd">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
+        </mat-form-field>
+    </div>
+    <!-- Desc. Individual -->
+    <div class="centerW">
+        <h2>Descuento Individual</h2>
+    </div>
+    <div class="inputProd">
+        <mat-form-field appearance="outline" class="iContProd">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
+        </mat-form-field>
+    </div>
+    <!-- Desc. Individual -->
+    <div class="centerW">
+        <h2>Descuento Individual</h2>
+    </div>
+    <div class="inputProd">
+        <mat-form-field appearance="outline" class="iContProd">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
+        </mat-form-field>
+    </div>
+    <!-- Desc. Individual -->
+    <div class="centerW">
+        <h2>Descuento Individual</h2>
+    </div>
+    <div class="inputProd">
+        <mat-form-field appearance="outline" class="iContProd">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
+        </mat-form-field>
+    </div>
+    <!-- Desc. Individual -->
+    <div class="centerW">
+        <h2>Descuento Individual</h2>
+    </div>
+    <mat-form-field appearance="outline" class="cantProd">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
+    </mat-form-field>
+</div>
+
+<mat-dialog-actions align="end">
+    <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
+    <button mat-flat-button color="primary" [mat-dialog-close]="true">Aceptar</button>
+</mat-dialog-actions>

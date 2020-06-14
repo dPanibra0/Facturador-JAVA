@@ -11,7 +11,6 @@ import { ContainerComponent } from './components/container/container.component';
 import { UserComponent } from './components/user/user.component';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 
-import { VentasComponent } from './ventas/ventas.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
@@ -36,6 +35,11 @@ import { EditProductoComponent } from './inventario/edit-producto/edit-producto.
 import { ListComprasComponent } from './compras/list-compras/list-compras.component';
 import { AddComprasComponent } from './compras/add-compras/add-compras.component';
 import { EditComprasComponent } from './compras/edit-compras/edit-compras.component';
+// Ventas
+import { AddVentaComponent } from './ventas/add-venta/add-venta.component';
+import { EditVentaComponent } from './ventas/edit-venta/edit-venta.component';
+import { ListVentaComponent } from './ventas/list-venta/list-venta.component';
+import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,6 @@ import { EditComprasComponent } from './compras/edit-compras/edit-compras.compon
     QuickMenuComponent,
     SidebarMenuComponent,
     ContainerComponent,
-    VentasComponent,
     ReportesComponent,
     ConfiguracionesComponent,
     BusquedaComponent,
@@ -65,8 +68,12 @@ import { EditComprasComponent } from './compras/edit-compras/edit-compras.compon
     ListComprasComponent,
     AddComprasComponent,
     EditComprasComponent,
+    AddVentaComponent,
+    EditVentaComponent,
+    ListVentaComponent,
+    ProductDialogComponent,
   ],
   imports: [CommonModule, MainRoutingModule, MaterialModule],
-  entryComponents:[DeleteDialogComponent]
+  entryComponents:[DeleteDialogComponent,ProductDialogComponent]
 })
 export class MainModule {}
