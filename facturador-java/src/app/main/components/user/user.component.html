@@ -1,5 +1,5 @@
 <mat-menu #appMenu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="openDialog()">
     <mat-icon>person</mat-icon>
     <span>Perfil</span>
   </button>
@@ -13,9 +13,11 @@
   </button>
 </mat-menu>
 
-<button mat-button [matMenuTriggerFor]="appMenu" class="userContainer">
+<button *ngIf="user" mat-button [matMenuTriggerFor]="appMenu" class="userContainer">
   <div class="column centerW">
-    <img src="./../../../../assets/images/pepe.jpg" class="userImg" alt="Imagen Usuario">
-    <span>Usuario 1</span>
+    <img [src]="imagePath" class="userImg" alt="Imagen Usuario">
+    <span class="centerW">{{firstName}} 
+      <mat-icon  matSuffix *ngIf="user.tipo==0">admin_panel_settings</mat-icon>
+    </span>
   </div>
 </button>

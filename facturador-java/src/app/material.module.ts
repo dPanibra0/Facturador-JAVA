@@ -22,6 +22,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -48,6 +50,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatNativeDateModule,
     MatMomentDateModule,
     MatTooltipModule,
+    MaterialFileInputModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatIconModule,
@@ -72,7 +76,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDatepickerModule,
     MatNativeDateModule,
     MatMomentDateModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MaterialFileInputModule,
+    MatSlideToggleModule
   ],
 })
 export class MaterialModule {}

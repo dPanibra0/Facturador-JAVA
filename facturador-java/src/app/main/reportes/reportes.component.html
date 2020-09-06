@@ -1,1 +1,132 @@
-<p>reportes works!</p>
+<div class="cContainer mat-elevation-z2 mt1">
+  <div class="ccTitle backBtn">
+    <div class="baseLine row">
+      <span class="icon fas fa-chart-pie"></span>
+      <span class="titleCc">Reportes</span>
+    </div>
+    <button mat-icon-button routerLink="../">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+  <div class="reportsContainer">
+    <div class="chartReports mat-elevation-z1">
+      <canvas id="reportChart" #reportChart></canvas>
+    </div>
+    <div class="ventasReports">
+      <!-- DETALLE VENTA -->
+      <div class="mat-elevation-z1 reportConten">
+        <h1>Detalle de Venta</h1>
+        <div class="row ">
+          <mat-form-field appearance="outline" style="margin-bottom: -1.25em;">
+            <mat-label>Nro. de Venta</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <button mat-stroked-button color="primary" class="btnReport ml1" (click)='openDetalleVenta()'>
+            <mat-icon>search</mat-icon>Buscar
+          </button>
+        </div>
+      </div>
+      <!-- HISTORIAL DEL CLIENTE -->
+      <div class="mt1 mat-elevation-z1 reportConten">
+        <h1>Historial del Cliente</h1>
+        <div class="row ">
+          <mat-form-field appearance="outline" style="margin-bottom: -1.25em;">
+            <mat-label>Cliente</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <button mat-stroked-button color="primary" class="btnReport ml1" (click)='openHistorialCLiente()'>
+            <mat-icon>search</mat-icon>Buscar
+          </button>
+        </div>
+      </div>
+      <!-- VENTAS REALIZADAS -->
+      <div class="mt1 mat-elevation-z1 reportConten ventasRealizadas">
+        <h1>Ventas Realizadas</h1>
+        <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1em;">
+          <mat-label>Vendedor</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1em;">
+          <mat-label>Metod de Pago</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1em;">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1.25em;">
+          <mat-label>Fecha Final</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <div class="row betweenC btnEnd">
+          <button mat-stroked-button color="primary" class="btnReport" (click)="openVentasRealizadas('solo')">
+            <mat-icon>search</mat-icon>Solo Ventas
+          </button>
+          <button mat-stroked-button color="primary" class="btnReport" (click)="openVentasRealizadas('detalles')">
+            <mat-icon>search</mat-icon>Ventas y Detalles
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STOCK DE PRODUCTOS -->
+    <div class="stockProductsReports  mat-elevation-z1 reportConten">
+      <h1>Stock de Productos</h1>
+      <mat-form-field appearance="outline" class="wFull" >
+        <mat-label>Categoria</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <div class="row wFull">
+        <mat-form-field appearance="outline" class="inpReports" style="margin-bottom: -1.25em;">
+          <mat-label>Menores a:</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <button mat-stroked-button color="primary" class="btnReport ml1" (click)='openProductosStock("menor")'>
+          <mat-icon>search</mat-icon>Ver
+        </button>
+      </div>
+      <div class="row btnEnd">
+        <mat-form-field appearance="outline" class="inpReports" style="margin-bottom: -1.5em;">
+          <mat-label>Mayores a:</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <button mat-stroked-button color="primary" class="btnReport ml1" (click)='openProductosStock("mayor")'>
+          <mat-icon>search</mat-icon>Ver
+        </button>
+      </div>
+    </div>
+    <!-- RANKING DE PRODUCTOS -->
+    <div class="rankProductsReports mat-elevation-z1 reportConten">
+      <h1>Ranking de Productos</h1>
+      <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1em;">
+        <mat-label>Categoria</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <div class="fechasReport column">
+        <mat-form-field appearance="outline"  style="margin-bottom: -1em; width: 40%;">
+          <mat-label>Fecha Inicio</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </div>
+      <button mat-stroked-button color="primary" class="btnReport btnEnd" (click)='openProductosRanking()'>
+        <mat-icon>search</mat-icon>Ver Ranking
+      </button>
+    </div>
+    <!-- PRODUCTOS POR VENCER -->
+    <div class=" vencProductReports mat-elevation-z1 reportConten">
+      <h1>Productos por Vencer</h1>
+      <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1em;">
+        <mat-label>Fecha de Inicio</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="wFull" style="margin-bottom: -1.25em;">
+        <mat-label>Fecha Final</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <button mat-stroked-button color="primary" class="btnReport btnEnd" (click)='openProductosVencer()'>
+        <mat-icon>search</mat-icon>Ver Productos
+      </button>
+    </div>
+  </div>
+</div>

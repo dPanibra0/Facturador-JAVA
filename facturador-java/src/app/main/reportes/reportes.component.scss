@@ -1,0 +1,54 @@
+.reportsContainer {
+  display: grid;
+  grid-template-rows: 55% 44%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-template-areas:
+    "chart chart chart ventas"
+    "a b c ventas";
+}
+.chartReports {
+  grid-area: chart;
+  // width: 50vw;
+//   height: 80%;
+  position: relative;
+}
+.ventasReports {
+  grid-area: ventas;
+  display: flex;
+  flex-direction: column;
+}
+.ventasReports .ventasRealizadas{
+  flex: 1;
+}
+.stockProductsReports {
+  grid-area: b;
+}
+.rankProductsReports {
+  grid-area: c;
+}
+.vencProductReports {
+  grid-area: a;
+}
+#reportChart {
+//   width: 80% !important;
+  height: 99% !important;
+}
+.reportConten{
+  position: relative;
+  padding: .5rem;
+}
+.btnReport{
+  margin-top: 3px;
+  height: 53px;
+}
+.ml1{
+  margin-left: 1rem;
+}
+.btnEnd{
+  position: absolute;
+  bottom: .5rem;
+  left: .5rem;
+  right: .5rem;
+  width: calc(100% - 1rem);
+}

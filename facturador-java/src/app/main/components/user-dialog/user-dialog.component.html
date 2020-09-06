@@ -1,0 +1,48 @@
+<div class="column centerW">
+  <div class="container-img-user">
+    <img [src]="data.img" class="userImg" alt="Imagen Usuario" />
+    <button
+      mat-mini-fab
+      class="btn-edit-img"
+      color="primary"
+      (click)="pressBtn()"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <div class="space-between  w-80" *ngIf="file">
+    <button mat-flat-button (click)="onNoClick()" [disabled]="disableBtn">
+      Cancel
+    </button>
+    <button mat-flat-button class="btnSave" color="primary" (click)="uploadIMG()" [disabled]="disableBtn">
+      <ng-container *ngIf="save">
+        <mat-icon>save</mat-icon>
+        Guardar Imagen
+      </ng-container>
+      <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+      <mat-icon *ngIf="succes" matSuffix color='primary'>done</mat-icon>
+    </button>
+  </div>
+  <mat-form-field appearance="outline" class="notInput">
+    <ngx-mat-file-input
+      id="fileInput"
+      #fileInput
+      (change)="readURL($event)"
+      accept=".png, .jpg"
+    ></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="mt1 w-80">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="data.user.nombre" disabled />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-80">
+    <mat-label>Usuario</mat-label>
+    <input matInput [(ngModel)]="data.user.usuario" disabled />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-80">
+    <mat-label>Tipo</mat-label>
+    <input matInput [(ngModel)]="tipo" disabled />
+  </mat-form-field>
+</div>

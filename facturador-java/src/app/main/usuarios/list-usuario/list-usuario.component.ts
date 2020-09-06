@@ -2,7 +2,7 @@
   import { MatPaginator } from '@angular/material/paginator';
   import { MatSort } from '@angular/material/sort';
   import { MatTableDataSource } from '@angular/material/table';
-  import { UsuarioService } from '@services/Usuario.service';
+  import { UsuarioService } from '@services/usuario.service';
   import { Usuario } from '@models/usuario.model';
   
   @Component({

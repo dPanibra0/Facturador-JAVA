@@ -1,0 +1,31 @@
+.userImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.container-img-user{
+    position: relative;
+    margin-bottom: 3%;
+}
+.btn-edit-img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.notInput{
+    display: none;
+}
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}
+.w-80{
+    width: 80%;
+}
+.btnSave{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

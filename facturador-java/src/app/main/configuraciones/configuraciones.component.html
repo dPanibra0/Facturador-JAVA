@@ -1,1 +1,88 @@
-<p>configuraciones works!</p>
+<div class="cContainer mat-elevation-z2 mt1">
+  <div class="ccTitle backBtn">
+    <div class="baseLine row">
+      <span class="icon fas fa-cog"></span>
+      <span class="titleCc">Configuraciones </span>
+    </div>
+    <button mat-icon-button routerLink="../">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+  </div>
+
+  <div class="cFull row b-r10">
+    <div class="imgForm">
+      <img src="" alt="" />
+    </div>
+    <div class="formCongif">
+      <h1>Atributos que desea Manejar</h1>
+      <mat-checkbox
+        class="checkBox-margin"
+        color="primary"
+        [(ngModel)]="atributos.marca"
+        >Marca</mat-checkbox
+      >
+      <mat-checkbox
+        class="checkBox-margin"
+        color="primary"
+        [(ngModel)]="atributos.color"
+        >Color</mat-checkbox
+      >
+      <mat-checkbox
+        class="checkBox-margin"
+        color="primary"
+        [(ngModel)]="atributos.lote"
+        >Lote</mat-checkbox
+      >
+      <mat-checkbox
+        class="checkBox-margin"
+        color="primary"
+        [(ngModel)]="atributos.laboratorio"
+        >Laboratorio</mat-checkbox
+      >
+      <mat-checkbox
+        class="checkBox-margin"
+        color="primary"
+        [(ngModel)]="atributos.fechaVenc"
+        >Fecha de Vencimiento</mat-checkbox
+      >
+      <mat-checkbox
+        class="checkBox-margin"
+        color="primary"
+        [(ngModel)]="atributos.promo1"
+        >Promocion1</mat-checkbox
+      >
+      <mat-checkbox
+        class="checkBox-margin mb1"
+        color="primary"
+        [(ngModel)]="atributos.promo2"
+        >Promocion2</mat-checkbox
+      >
+
+      <h1 class="mt-1">Permitir seguir vendiendo cuando no haya stok?</h1>
+      <mat-slide-toggle color="primary" [(ngModel)]="nConfiguracio.ventasinstock"
+        >Permitir</mat-slide-toggle
+      >
+
+      <h1 class="mt-1">Reducir Stok al vender?</h1>
+      <mat-slide-toggle color="primary" [(ngModel)]="nConfiguracio.reducirstock"
+        >Reducir</mat-slide-toggle
+      >
+
+      <h1 class="mt-1">Permitir modificar fecha al vender?</h1>
+      <mat-slide-toggle color="primary" [(ngModel)]="nConfiguracio.fechavauto"
+        >Modificar Fecha</mat-slide-toggle
+      >
+      <div class="row  mt2 endC">
+        <button mat-stroked-button class="mr3" [disabled]="btnState.disabled">Cancelar</button>
+        <button mat-flat-button color="primary" class="btnConfig" [disabled]="btnState.disabled">
+          <ng-container *ngIf="btnState.start">
+            <mat-icon>save</mat-icon>
+            Guardar Configuracion
+          </ng-container>
+          <mat-spinner *ngIf="btnState.loading" diameter="20"></mat-spinner>
+          <mat-icon *ngIf="btnState.success" matSuffix color="primary">done</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

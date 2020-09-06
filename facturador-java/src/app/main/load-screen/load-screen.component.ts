@@ -17,7 +17,6 @@ export class LoadScreenComponent implements OnInit {
   }
   animationLoad() {
     this.line.nativeElement.classList.add('lineAnimation');
-
     this.line.nativeElement.addEventListener('animationend', () => {
       this.loadContainer.nativeElement.classList.add('endLoginAnimation');
       this.loadContainer.nativeElement.addEventListener('animationend', () => {
@@ -27,7 +26,7 @@ export class LoadScreenComponent implements OnInit {
   }
   main() {
     setTimeout(() => {
-      this.router.navigate(['main']);
+      this.router.navigate(['/home']);
     }, 2000);
   }
 }

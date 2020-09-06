@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainComponent } from './main.component';
+import { LoadScreenComponent } from './load-screen/load-screen.component';
 import { HomeComponent } from './home/home.component';
 
 import { ReportesComponent } from './reportes/reportes.component';
 import { ConfiguracionesComponent } from './configuraciones/configuraciones.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../core/guards/admin.guard';
+import { LogedGuard } from '../core/guards/loged.guard';
 // Distribuidor
 import { ListDistribuidorComponent } from './distribuidores/list-distribuidor/list-distribuidor.component';
 import { AddDistribuidorComponent } from './distribuidores/add-distribuidor/add-distribuidor.component';
@@ -33,11 +35,12 @@ import { AddVentaComponent } from './ventas/add-venta/add-venta.component';
 import { EditVentaComponent } from './ventas/edit-venta/edit-venta.component';
 import { ListVentaComponent } from './ventas/list-venta/list-venta.component';
 const routes: Routes = [
+  { path: "", component: LoadScreenComponent},
   {
     path: '',
     component: MainComponent,
     children: [
-      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'ventas', component: ListVentaComponent },
       { path: 'ventas/add', component: AddVentaComponent },
       { path: 'ventas/:id', component: EditVentaComponent },
@@ -56,9 +59,12 @@ const routes: Routes = [
       { path: 'compras', component: ListComprasComponent },
       { path: 'compras/add', component: AddComprasComponent },
       { path: 'compras/:id', component: EditComprasComponent },
-      { path: 'reportes', component: ReportesComponent,canActivate: [AdminGuard]},
+      {
+        path: 'reportes',
+        component: ReportesComponent,
+        canActivate: [AdminGuard],
+      },
       { path: 'configuraciones', component: ConfiguracionesComponent },
-      { path: 'busqueda', component: BusquedaComponent },
     ],
   },
 ];

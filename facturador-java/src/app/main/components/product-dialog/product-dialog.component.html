@@ -1,67 +1,127 @@
 <div class="diaProducTitle">
-    <div class="titleProduc column">
-        <h1>{{data.producto.producto}} {{data.producto.marca}}</h1>
-        <span>{{data.producto.detalles}}</span>
-    </div>
+  <div class="titleProduc column">
+    <h1>{{data.codproducto.producto}} {{data.codproducto.marca}}</h1>
+    <span>{{data.codproducto.detalles}}</span>
+  </div>
 
-    <mat-form-field appearance="outline" class="cantProd">
-        <mat-label>Cantidad</mat-label>
-        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="cantProd">
+    <mat-label>Cantidad</mat-label>
+    <input
+      matInput
+      [(ngModel)]="data.cantidad"
+      (ngModelChange)="cant($event)"
+      type="number"
+      oninput="this.value=this.value.slice(0,this.maxLength)"
+      min="1"
+      maxlength="5"
+      required
+    />
+  </mat-form-field>
 </div>
 
-<div mat-dialog-content class="contentProd">
-    <!-- Select Promo -->
-    <div class="centerW ">
-        <p>Esta seguro de querer eliminar al <span class="dltTitle"></span></p>
+<div class="contentProd">
+  <!-- Select Promo -->
+  <div class="rowDialogProduct">
+    <div class="centerW">
+      <mat-form-field appearance="outline">
+        <mat-label>Precio original por:</mat-label>
+        <mat-select
+          [(value)]="data.umedidausada"
+          (selectionChange)="select($event.value)"
+        >
+          <mat-option value="Unidad">Unidad</mat-option>
+          <mat-option [value]="data.codproducto.promo1"
+            >{{data.codproducto.promo1}}</mat-option
+          >
+          <mat-option [value]="data.codproducto.promo2"
+            >{{data.codproducto.promo2}}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="inputProd">
-        <mat-form-field appearance="outline" class="iContProd">
-            <mat-label>Cantidad</mat-label>
-            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
-        </mat-form-field>
+      <mat-form-field appearance="outline" class="inputDP">
+        <input matInput [(ngModel)]="data.prevesdind" disabled />
+      </mat-form-field>
     </div>
-    <!-- Desc. Individual -->
+  </div>
+
+  <!-- Desc. Individual -->
+  <div class="rowDialogProduct">
+    <div class="centerW dest">
+      <span>Descuento Individual</span>
+    </div>
+    <div class="inputProd centerW dest">
+      <mat-form-field appearance="outline" class="inputDP">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="data.descindiv"
+          (ngModelChange)="descInd($event)"
+          oninput="this.value=this.value.slice(0,this.maxLength)"
+          min="0"
+          maxlength="5"
+        />
+        <span matPrefix class="cashDisable">S/.&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- Desc. Individual -->
+  <div class="rowDialogProduct">
     <div class="centerW">
-        <h2>Descuento Individual</h2>
+      <span>Precio Ind. c/desc.</span>
     </div>
     <div class="inputProd">
-        <mat-form-field appearance="outline" class="iContProd">
-            <mat-label>Cantidad</mat-label>
-            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
-        </mat-form-field>
+      <mat-form-field appearance="outline" class="inputDP">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="data.prevesdtot"
+          (ngModelChange)="precioCdescuento($event)"
+          oninput="this.value=this.value.slice(0,this.maxLength)"
+          min="0"
+          maxlength="5"
+        />
+        <span matPrefix class="cashDisable">S/.&nbsp;</span>
+      </mat-form-field>
     </div>
-    <!-- Desc. Individual -->
+  </div>
+  <!-- Desc. Total -->
+  <div class="rowDialogProduct mt1">
+    <div class="centerW dest">
+      <span>Descuento Total</span>
+    </div>
+    <div class="inputProd dest">
+      <mat-form-field appearance="outline" class="inputDP">
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="data.desctotal"
+          (ngModelChange)="descTotal($event)"
+          oninput="this.value=this.value.slice(0,this.maxLength)"
+          min="0"
+          maxlength="5"
+        />
+        <span matPrefix class="cashDisable">S/.&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- Desc. Individual -->
+  <div class="rowDialogProduct">
     <div class="centerW">
-        <h2>Descuento Individual</h2>
+      <h2>TOTAL</h2>
     </div>
     <div class="inputProd">
-        <mat-form-field appearance="outline" class="iContProd">
-            <mat-label>Cantidad</mat-label>
-            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
-        </mat-form-field>
+      <mat-form-field appearance="outline" class="inputDP">
+        <input matInput [(ngModel)]="data.subtotal" disabled />
+      </mat-form-field>
     </div>
-    <!-- Desc. Individual -->
-    <div class="centerW">
-        <h2>Descuento Individual</h2>
-    </div>
-    <div class="inputProd">
-        <mat-form-field appearance="outline" class="iContProd">
-            <mat-label>Cantidad</mat-label>
-            <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
-        </mat-form-field>
-    </div>
-    <!-- Desc. Individual -->
-    <div class="centerW">
-        <h2>Descuento Individual</h2>
-    </div>
-    <mat-form-field appearance="outline" class="cantProd">
-        <mat-label>Cantidad</mat-label>
-        <input matInput type="number" oninput="this.value=this.value.slice(0,this.maxLength)" min="0" maxlength="5">
-    </mat-form-field>
+  </div>
 </div>
 
-<mat-dialog-actions align="end">
-    <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
-    <button mat-flat-button color="primary" [mat-dialog-close]="true">Aceptar</button>
+<mat-dialog-actions align="end" class="mt1">
+  <button mat-button color="primary" (click)="onNoClick()">Cancel</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true">
+    Aceptar
+  </button>
 </mat-dialog-actions>

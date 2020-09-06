@@ -1,6 +1,8 @@
+import { Producto } from "./producto.model";
+
 export class VentaDetalle {
   public cantidad: number;
-  public codproducto: number;
+  public codproducto: Producto;
   public descindiv: number;
   public desctotal: number;
   public ganancia: number;
@@ -11,7 +13,7 @@ export class VentaDetalle {
   public umedidausada: string;
   constructor(
     cantidad: number,
-    codproducto: number,
+    codproducto: Producto,
     descindiv: number,
     desctotal: number,
     ganancia: number,

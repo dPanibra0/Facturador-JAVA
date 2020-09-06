@@ -1,32 +1,41 @@
-.diaProducTitle{
-    display: flex;
-    justify-content: space-between;
+.diaProducTitle {
+  display: flex;
+  justify-content: space-between;
 }
-.titleProduc h1{
-    display: inline-block;
-    margin: 0;
-    padding: 0;
+.titleProduc h1 {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
-.titleProduc span{
-    color: grey;
-    font-size: 14px;
+.titleProduc span {
+  color: grey;
+  font-size: 14px;
 }
-.cantProd{
-    // margin-top: 20px;
-    width: 100px;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
+.cantProd {
+  // margin-top: 20px;
+  width: 100px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
-.contentProd{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: repeat(6,1fr);
+.contentProd {
+  width: 100%;
 }
-.inputProd{
-    display: flex;
-    justify-content: flex-end;
+.rowDialogProduct {
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  margin-bottom: -15px;
 }
-.inputProd .iContProd{
- width: 50%;
+.rowDialogProduct span:first-child {
+  font-size: 16px;
+}
+.rowDialogProduct div:nth-child(2) {
+  display: flex;
+  justify-content: flex-end;
+}
+.dest {
+  color: green;
+}
+.inputDP {
+  width: 50%;
 }

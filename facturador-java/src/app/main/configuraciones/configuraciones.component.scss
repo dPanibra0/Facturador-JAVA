@@ -1,0 +1,24 @@
+.addClienteImg{
+    background-image: url("./../../../assets/images/clientes.jpg");
+  
+  }
+  .formCongif {
+    margin-left: 2.5rem;
+    width: 100%;
+    // background-color: rgb(205, 50, 50);
+  }
+  .formCongif h1{
+    display: block;
+    margin: 2.5rem 0 1rem;
+
+  }
+  .checkBox-margin{
+    margin: 0 10px;
+  }
+  .btnConfig{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13rem;
+    margin-left: 3rem;
+  }

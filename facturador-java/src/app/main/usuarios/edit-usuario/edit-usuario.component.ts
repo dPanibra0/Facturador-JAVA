@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '@models/Usuario.model';
-import { UsuarioService } from '@services/Usuario.service';
+import { Usuario } from '@models/usuario.model';
+import { UsuarioService } from '@services/usuario.service';
 import {
   FormControl,
   FormGroupDirective,

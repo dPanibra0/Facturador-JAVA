@@ -1,75 +1,39 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Producto } from '@models/producto.model';
-import { ProductoService } from '@services/producto.service';
-import { Venta } from '@models/venta.model';
-import { VentaDetalle } from '@models/ventaDetalle.model';
-import { ClienteService } from '@services/cliente.service';
-import { Cliente } from '@models/Cliente.model';
-import { FormControl } from '@angular/forms';
-import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { ProductDialogComponent } from './../../components/product-dialog/product-dialog.component';
-import { element } from 'protractor';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Producto } from "@models/producto.model";
+import { ProductoService } from "@services/producto.service";
 
-export class ProductoCompra {
-  constructor(
-    public id: number,
-    public cantidad: number,
-    public producto: string,
-    public detalle: string,
-    public stock: number,
-    public precio: number,
-    public subTotal: number = cantidad * precio
-  ) {}
-}
+import { Venta } from "@models/venta.model";
+import { VentasService } from "@services/venta.service";
+import { VentaDetalle } from "@models/ventaDetalle.model";
+
+import { ClienteService } from "@services/cliente.service";
+import { Cliente } from "@models/cliente.model";
+
+import { FormControl } from "@angular/forms";
+import { MatTableDataSource, MatTable } from "@angular/material/table";
+import { MatDialog } from "@angular/material/dialog";
+import { ProductDialogComponent } from "./../../components/product-dialog/product-dialog.component";
+
+import * as moment from "moment";
 @Component({
-  selector: 'app-add-venta',
-  templateUrl: './add-venta.component.html',
-  styleUrls: ['./add-venta.component.scss'],
+  selector: "app-add-venta",
+  templateUrl: "./add-venta.component.html",
+  styleUrls: ["./add-venta.component.scss"],
 })
 export class AddVentaComponent implements OnInit {
-  nVentaDetalle: Array<VentaDetalle>;
-  nVenta = new Venta(
-    0,
-    0,
-    1,
-    '',
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    '',
-    0,
-    0,
-    0,
-    this.nVentaDetalle
-  );
+  nVentaDetalle: VentaDetalle[] = [];
+  nVenta = new Venta(0,0,1,"",0,0,0,0,0,0,0,"",0,0,0,this.nVentaDetalle);
   // Tabla de productos
   displayedColumns: string[] = [
-    'cantidad',
-    'producto',
-    'stock',
-    'precio',
-    'subTotal',
-    'delete',
+    "cantidad",
+    "producto",
+    "stock",
+    "precio",
+    "descTotal",
+    "subTotal",
+    "delete",
   ];
-  dataSource: MatTableDataSource<ProductoCompra>;
-  listaProductosTabla: ProductoCompra[] = [];
-
-  // datos de formulario
-  tiposComprobantes: string[] = [
-    'Nota de Compra',
-    'Boleta de Venta',
-    'Factura',
-    'Recibo por Honorarios',
-    'Ticket',
-  ];
-  favoriteSeason: string;
-  seasons: string[] = ['Efectivo', 'Tarjeta'];
-  total: number = 0;
+  dataSource: MatTableDataSource<VentaDetalle>;
   // datos externos
   clientes: Array<Cliente>;
   loadDist = false;
@@ -82,17 +46,20 @@ export class AddVentaComponent implements OnInit {
   productsControl = new FormControl();
   listTransicion: Producto[];
   listaProductsTabla;
-  @ViewChild(MatTable) tabla1: MatTable<ProductoCompra>;
+
+  fecha = moment(new Date()).format("DD/MM/YYYY");
+  @ViewChild(MatTable) tabla1: MatTable<VentaDetalle>;
 
   constructor(
     private _sCliente: ClienteService,
     private _sProducto: ProductoService,
+    private _sVenta: VentasService,
     public _dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.nVenta.ventadetalle;
-    // this.dataSource = new MatTableDataSource(this.listaProductos);
+    this.nVenta.fecha = this.fecha;
+
     this._sCliente.getClientes().subscribe(
       (data: Array<Cliente>) => {
         this.clientes = data;
@@ -133,40 +100,47 @@ export class AddVentaComponent implements OnInit {
           return;
         }
       });
-      let productin = new ProductoCompra(
-        element.codproducto,
-        1,
-        element.producto,
-        element.detalles,
-        element.cantidad,
-        element.precioco
-      );
-      this.listaProductosTabla.push(productin);
+      let ganancia: number = element.preciove - element.precioco;
+      let ventDetalleProd = new VentaDetalle(1,element,0,0,ganancia,element.codproducto,element.preciove,element.preciove,element.preciove,"Unidad" );
+      this.nVentaDetalle.push(ventDetalleProd);
+      console.log(this.nVentaDetalle);
     });
 
     this.tabla1.renderRows();
     this.nombresProductos = [];
     this.listTransicion = [];
+    this.nVenta.ventadetalle=this.nVentaDetalle;
     this.getTotalCost();
   }
   getTotalCost() {
-    this.total = 0;
-    this.listaProductosTabla.map((t) => (this.total += t.subTotal));
-    this.total = parseFloat(this.intlRound(this.total));
-    this.nVenta;
+    this.nVenta.totcompra = 0;
+    this.nVenta.descuento = 0;
+    this.nVenta.ganancia = 0;
+    this.nVenta.totventa = 0;
+    this.nVentaDetalle.map((t) => {
+      this.nVenta.totcompra += t.cantidad*t.prevesdind;
+      this.nVenta.descuento += t.desctotal;
+      this.nVenta.ganancia += t.ganancia;
+    });
+    this.nVenta.totcompra = parseFloat(this.intlRound(this.nVenta.totcompra));
+    this.nVenta.descuento = parseFloat(this.intlRound(this.nVenta.descuento));
+    this.nVenta.ganancia = parseFloat(this.intlRound(this.nVenta.ganancia));
+    this.nVenta.totventa = parseFloat(
+      this.intlRound(this.nVenta.totcompra - this.nVenta.descuento)
+    );
   }
   somethingChanged(id) {
-    this.listaProductosTabla.filter((producto) => {
-      if (producto.id == id) {
-        producto.subTotal = producto.cantidad * producto.precio;
-        producto.subTotal = parseFloat(this.intlRound(producto.subTotal));
+    this.nVentaDetalle.filter((producto) => {
+      if (producto.codproducto.codproducto == id) {
+        producto.subtotal = producto.cantidad * producto.codproducto.preciove;
+        producto.subtotal = parseFloat(this.intlRound(producto.subtotal));
       }
     })[0];
     this.getTotalCost();
   }
   addVisible(listaProductos: Array<Producto>) {
     listaProductos.forEach((element) => {
-      Object.defineProperty(element, 'visible', {
+      Object.defineProperty(element, "visible", {
         value: true,
         writable: true,
         enumerable: true,
@@ -176,12 +150,12 @@ export class AddVentaComponent implements OnInit {
   }
   quitarProduct(id) {
     let cont = 0;
-    for (let el of this.listaProductosTabla) {
-      if (el.id === id) {
-        this.listaProductosTabla.splice(cont, 1);
+    for (let el of this.nVentaDetalle) {
+      if (el.codproducto.codproducto === id) {
+        this.nVentaDetalle.splice(cont, 1);
         this.tabla1.renderRows();
         for (let i of this.productos) {
-          if (i.codproducto == el.id) {
+          if (i.codproducto == el.codproducto.codproducto) {
             i.visible = true;
             break;
           }
@@ -192,42 +166,53 @@ export class AddVentaComponent implements OnInit {
     }
     this.getTotalCost();
   }
-  onSubmit() {
-    console.log(this.nVenta);
-  }
-  addSaldo() {
-    this.nVenta.saldo = this.nVenta.montpago1 + this.nVenta.montpago2;
-  }
+
   intlRound(numero, decimales = 2, usarComa = false) {
     let opciones = {
       maximumFractionDigits: decimales,
       useGrouping: false,
     };
-    return new Intl.NumberFormat(usarComa ? 'es' : 'en', opciones).format(
+    return new Intl.NumberFormat(usarComa ? "es" : "en", opciones).format(
       numero
     );
   }
   deleteList() {
-    this.listaProductosTabla = [];
+    this.nVentaDetalle = [];
+    this.nVenta.ventadetalle=[];
     this.productos.forEach((element) => {
       element.visible = true;
     });
     this.getTotalCost();
   }
   openDialog(id) {
-    console.log(id);
-    let producto = this.productos.filter((element) =>  element.codproducto == id)[0];
-    console.log(producto);
-    
+    let producto: VentaDetalle = this.nVentaDetalle.filter(
+      (element) => element.idventadetalle == id
+    )[0];
     const dialogRef = this._dialog.open(ProductDialogComponent, {
-      width: '500px',
-      data: { producto:producto },
+      width: "500px",
+      data: producto,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result === true) {
-        console.log('gaaaaaaaa');
+      if (producto.cantidad < 1) {
+        producto.cantidad = 1;
+        producto.subtotal = producto.prevesdind;
       }
+      if (result === true) {
+      }
+      this.getTotalCost();
     });
+  }
+  onSubmit() {
+    console.log(this.nVenta);
+
+    this._sVenta.registrarVenta(this.nVenta).subscribe(
+      (data) => {
+        console.log("listo");
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
